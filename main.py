@@ -1,24 +1,37 @@
+import csv
 import sys
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget,QFileDialog
+from PyQt5.QtWidgets import QDialog, QApplication, QWidget,QFileDialog,QVBoxLayout, QTextEdit,QSizePolicy
 from PyQt5.uic import loadUi
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 
 import sqlite3
+
+import joblib
+import numpy as np
+
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 #data={}
 
 class WelcomeScreen(QDialog):
     def __init__(self):
         super(WelcomeScreen, self).__init__()
         loadUi("welcomescreen.ui", self)
+        
         self.login.clicked.connect(self.gotologin)
         self.create.clicked.connect(self.gotocreate)
 
     def gotologin(self):
         login = LoginScreen()
         widget.addWidget(login)
+        size_policy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        login.setSizePolicy(size_policy)
         widget.setCurrentIndex(widget.currentIndex()+1)
 
     def gotocreate(self):
@@ -48,22 +61,74 @@ class LoginScreen(QDialog):
             self.error.setText("Please input all fields.")
 
         else:
+            try:
+                conn = sqlite3.connect("users.db")
+                cur = conn.cursor()
+                query = 'SELECT * FROM login_info WHERE username =\''+user+"\'"
+                cur.execute(query)
+                result_user,result_pass = cur.fetchone()
+                print('3')
+                if (result_user == ''):
+                    self.error.setText("Invalid username or password")
+                else :
+                    print (result_user)
+                    if result_pass == password:
+                        print("Successfully logged in.")
+                        self.error.setText("")
+
+                        dataenter = dataenterScreen()
+                        widget.addWidget(dataenter)
+                        widget.setCurrentIndex(widget.currentIndex()+1)
+                    
+
+                    else:
+                        self.error.setText("Invalid username or password")
+            except Exception as e:
+                self.error.setText("Invalid username or password")             
+
+            
+
+
+class CreateAccScreen(QDialog):
+    def __init__(self):
+        super(CreateAccScreen, self).__init__()
+        loadUi("createacc.ui", self)
+
+        self.passwordfield.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.confirmpasswordfield.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.signup.clicked.connect(self.signupfunction)
+        self.back.clicked.connect(self.backfunction)
+
+    def backfunction(self):
+        back = WelcomeScreen()
+        
+        widget.addWidget(back)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
+    def signupfunction(self):
+        user = self.emailfield.text()
+        password = self.passwordfield.text()
+        confirmpassword = self.confirmpasswordfield.text()
+
+        if len(user) == 0 or len(password) == 0 or len(confirmpassword) == 0:
+            self.error.setText("Please fill in all inputs.")
+
+        elif password != confirmpassword:
+            self.error.setText("Passwords do not match.")
+        else:
             conn = sqlite3.connect("users.db")
             cur = conn.cursor()
-            query = 'SELECT password FROM login_info WHERE username =\''+user+"\'"
-            cur.execute(query)
-            result_pass = cur.fetchone()[0]
 
-            if result_pass == password:
-                print("Successfully logged in.")
-                self.error.setText("")
+            user_info = [user, password]
+            cur.execute(
+                'INSERT INTO login_info (username, password) VALUES (?,?)', user_info)
 
-                dataenter = dataenterScreen()
-                widget.addWidget(dataenter)
-                widget.setCurrentIndex(widget.currentIndex()+1)
+            conn.commit()
+            conn.close()
 
-            else:
-                self.error.setText("Invalid username or password")
+            dataenter = dataenterScreen()
+            widget.addWidget(dataenter)
+            widget.setCurrentIndex(widget.currentIndex()+1)
 
 
 class dataenterScreen(QDialog):
@@ -161,13 +226,12 @@ class dataenterScreen(QDialog):
 # main
 app = QApplication(sys.argv)
 welcome = WelcomeScreen()
+size_policy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+welcome.setSizePolicy(size_policy)
 widget = QtWidgets.QStackedWidget()
 widget.addWidget(welcome)
-widget.setFixedHeight(800)
-widget.setFixedWidth(1200)
-widget.setWindowFlags(Qt.Window | Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint)
+
+widget.setGeometry(100, 100, 1200, 800)
+widget.setWindowFlags(Qt.WindowMinMaxButtonsHint |Qt.WindowCloseButtonHint )
 widget.show()
-try:
-    sys.exit(app.exec_())
-except:
-    print("Exiting")
+sys.exit(app.exec_())
