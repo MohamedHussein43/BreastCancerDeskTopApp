@@ -8,7 +8,8 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 
 from dataenterscreen import*
-from welcomescreen import WelcomeScreen
+from LoginAndRegister import LoginScreen
+
 class CreateAccScreen(QDialog):
     def __init__(self, app, widget):
         self.app = app
@@ -22,8 +23,7 @@ class CreateAccScreen(QDialog):
         self.back.clicked.connect(self.backfunction)
 
     def backfunction(self):
-        back = WelcomeScreen(self.app, self.widget)
-        
+        back = LoginScreen(self.app, self.widget)
         self.widget.addWidget(back)
         self.widget.setCurrentIndex(self.widget.currentIndex()+1)
 

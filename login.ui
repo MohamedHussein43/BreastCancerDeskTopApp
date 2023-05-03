@@ -145,6 +145,24 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Password</string>
     </property>
    </widget>
+   
+   <widget class="QPushButton" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>550</y>
+      <width>341</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgba(0,0,0,0);text-decoration: underline;QLabel:hover;color:rgb(0, 0, 255);font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Don't have an account</string>
+    </property>
+   </widget>
+
    <widget class="QLabel" name="error">
     <property name="geometry">
      <rect>
@@ -159,24 +177,6 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="back">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>50</y>
-      <width>341</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius:20px;
-background-color: rgb(170, 255, 255);
-font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>back</string>
     </property>
    </widget>
   </widget>
