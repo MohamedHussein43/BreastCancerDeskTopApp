@@ -13,7 +13,7 @@ class LoginScreen(QDialog):
         self.app = app
         self.widget = widget
         super(LoginScreen, self).__init__()
-        loadUi("login.ui", self)
+        loadUi("../View/login.ui", self)
         self.passwordfield.setEchoMode(QtWidgets.QLineEdit.Password)
         self.login.clicked.connect(self.loginfunction)
         self.label_5.clicked.connect(self.backfunction)
@@ -32,7 +32,7 @@ class LoginScreen(QDialog):
 
         else:
             try:
-                conn = sqlite3.connect("users.db")
+                conn = sqlite3.connect("../Model/users.db")
                 cur = conn.cursor()
                 query = 'SELECT * FROM login_info WHERE username =\''+user+"\'"
                 cur.execute(query)

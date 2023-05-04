@@ -1,4 +1,5 @@
 import csv
+import sqlite3
 import sys
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
@@ -15,7 +16,7 @@ class CreateAccScreen(QDialog):
         self.app = app
         self.widget = widget
         super(CreateAccScreen, self).__init__()
-        loadUi("createacc.ui", self)
+        loadUi("../View/createacc.ui", self)
 
         self.passwordfield.setEchoMode(QtWidgets.QLineEdit.Password)
         self.confirmpasswordfield.setEchoMode(QtWidgets.QLineEdit.Password)
@@ -38,7 +39,7 @@ class CreateAccScreen(QDialog):
         elif password != confirmpassword:
             self.error.setText("Passwords do not match.")
         else:
-            conn = sqlite3.connect("users.db")
+            conn = sqlite3.connect("../Model/users.db")
             cur = conn.cursor()
 
             user_info = [user, password]
