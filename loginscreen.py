@@ -6,7 +6,7 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 import sqlite3
 from LoginAndRegister import CreateAccScreen
-
+import sys,res
 from dataenterscreen import *
 class LoginScreen(QDialog):
     def __init__(self, app, widget):
@@ -55,3 +55,10 @@ class LoginScreen(QDialog):
                         self.error.setText("Invalid username or password")
             except Exception as e:
                 self.error.setText("Invalid username or password")
+if __name__ == "__main__":
+        app = QtWidgets.QApplication(sys.argv)
+        Form = QtWidgets.QWidget()
+        ui = Ui_Form()
+        ui.setupUi(Form)
+        Form.show()
+        sys.exit(app.exec_())

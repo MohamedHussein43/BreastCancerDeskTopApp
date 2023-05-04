@@ -29,119 +29,97 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>110</y>
-      <width>211</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 36pt &quot;MS Shell Dlg 2&quot;; color:rgb(255, 255, 255)</string>
-    </property>
-    <property name="text">
-     <string>Sign up</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>200</y>
-      <width>381</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
-    </property>
-    <property name="text">
-     <string>Register a brand new account</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="signup">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>570</y>
-      <width>341</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius:20px;
-background-color: rgb(170, 255, 255);
-font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Sign up</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="emailfield">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>290</y>
-      <width>341</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:rgba(0,0,0,0);
-font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="passwordfield">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>390</y>
-      <width>341</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:rgba(0,0,0,0);
-font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>270</y>
-      <width>81</width>
-      <height>20</height>
+      <x>500</x>
+      <y>50</y>
+      <width>251</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>MS Shell Dlg 2</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
+      <family>12 Calibri</family>
+      <pointsize>42</pointsize>
+      <weight>9</weight>
       <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+     <string notr="true">font: 75 42pt bold &quot;Calibri&quot;;
+color:rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Username</string>
+     <string>Sign Up</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>370</y>
-      <width>81</width>
-      <height>20</height>
+      <x>30</x>
+      <y>190</y>
+      <width>381</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+     <string notr="true">font: 75 20pt bold &quot;Calibri&quot;;
+color:rgb(255, 255, 255);</string>
     </property>
     <property name="text">
+     <string>Register a new account</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="emailfield">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>310</y>
+      <width>391</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(0, 0, 0, 0);
+border:2px solid rgpa(0, 0, 0, 0);
+border-bottom-color:rgba(46, 82 , 101,200);
+color:rgb(0,0,0);
+padding-bottom:7px;</string>
+    </property>
+    <property name="placeholderText">
+     <string>UserName</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="passwordfield">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>400</y>
+      <width>391</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(0, 0, 0, 0);
+border:2px solid rgpa(0, 0, 0, 0);
+border-bottom-color:rgba(46, 82 , 101,200);
+color:rgb(0,0,0);
+padding-bottom:7px;</string>
+    </property>
+    <property name="placeholderText">
      <string>Password</string>
     </property>
    </widget>
@@ -161,41 +139,90 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>470</y>
-      <width>141</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Confirm Password</string>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="confirmpasswordfield">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>40</x>
       <y>490</y>
-      <width>341</width>
+      <width>401</width>
       <height>51</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
-     <string notr="true">background-color:rgba(0,0,0,0);
-font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+     <string notr="true">background-color: rgba(0, 0, 0, 0);
+border:2px solid rgpa(0, 0, 0, 0);
+border-bottom-color:rgba(46, 82 , 101,200);
+color:rgb(0,0,0);
+padding-bottom:7px;</string>
+    </property>
+    <property name="placeholderText">
+     <string>Confirm Password</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>0</y>
+      <width>781</width>
+      <height>801</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image:url(:/im/—Pngtree—pink ribbon of breast cancer_8423017.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="signup">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>610</y>
+      <width>271</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#signup{
+	Background-color:rgba(85,98,112,255);
+	color:rgba(255,255,255,200);
+	border-radius:5px;
+} 
+QPushButton#signup:pressed{
+	padding-left:5px;
+	padding-top:5px;
+	background-color:rgba(254, 81, 171, 0.8);
+	background-position:calc(100% - 10px)center;
+}
+QPushButton#signup:hover{
+	background-color:rgba(254, 81, 171, 0.8)
+}</string>
+    </property>
+    <property name="text">
+     <string>S i g n u p</string>
     </property>
    </widget>
    <widget class="QPushButton" name="back">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>630</y>
+      <x>480</x>
+      <y>670</y>
       <width>341</width>
       <height>51</height>
      </rect>
@@ -209,6 +236,8 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="signupres.qrc"/>
+ </resources>
  <connections/>
 </ui>
