@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1200</width>
-    <height>794</height>
+    <width>1920</width>
+    <height>1100</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1201</width>
-     <height>801</height>
+     <width>1920</width>
+     <height>1100</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -29,8 +29,8 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>670</x>
-      <y>170</y>
+      <x>1070</x>
+      <y>280</y>
       <width>301</width>
       <height>451</height>
      </rect>
@@ -52,8 +52,8 @@ border-radius:20px;</string>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>140</y>
+      <x>640</x>
+      <y>250</y>
       <width>431</width>
       <height>521</height>
      </rect>
@@ -70,8 +70,8 @@ border-radius:20px;</string>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>180</y>
+      <x>1090</x>
+      <y>290</y>
       <width>161</width>
       <height>61</height>
      </rect>
@@ -97,8 +97,8 @@ font: 75 22pt bold 1px&quot;Calibri&quot;;
    <widget class="QLineEdit" name="emailfield">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>300</y>
+      <x>1090</x>
+      <y>410</y>
       <width>241</width>
       <height>40</height>
      </rect>
@@ -127,8 +127,8 @@ padding-bottom:7px;</string>
    <widget class="QLineEdit" name="passwordfield">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>410</y>
+      <x>1090</x>
+      <y>520</y>
       <width>241</width>
       <height>40</height>
      </rect>
@@ -157,8 +157,8 @@ padding-bottom:7px;</string>
    <widget class="QPushButton" name="login">
     <property name="geometry">
      <rect>
-      <x>750</x>
-      <y>470</y>
+      <x>1150</x>
+      <y>580</y>
       <width>131</width>
       <height>41</height>
      </rect>
@@ -193,8 +193,8 @@ QPushButton#login:hover{
    <widget class="QPushButton" name="label_5">
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>530</y>
+      <x>990</x>
+      <y>640</y>
       <width>341</width>
       <height>51</height>
      </rect>
@@ -224,8 +224,6 @@ QPushButton#login:hover{
    </widget>
   </widget>
  </widget>
- <resources>
-  <include location="loginres.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

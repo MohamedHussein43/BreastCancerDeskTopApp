@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1156</width>
-    <height>619</height>
+    <width>1910</width>
+    <height>1077</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QWidget" name="bgwidget" native="true">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>-10</x>
      <y>0</y>
-     <width>1201</width>
-     <height>801</height>
+     <width>1920</width>
+     <height>1100</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -41,30 +41,43 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>120</y>
-      <width>251</width>
-      <height>61</height>
+      <x>700</x>
+      <y>220</y>
+      <width>701</width>
+      <height>131</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>12 Calibri</family>
+      <pointsize>75</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
     <property name="styleSheet">
-     <string notr="true">font: 36pt &quot;MS Shell Dlg 2&quot;; color:rgb(255, 255, 255)</string>
+     <string notr="true">
+font: 75pt bold&quot;Calibri&quot;;
+ color:rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Welcome</string>
+     <string>Welcome..</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>200</y>
-      <width>391</width>
-      <height>41</height>
+      <x>610</x>
+      <y>330</y>
+      <width>801</width>
+      <height>121</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+     <string notr="true">font: 75 36pt &quot;Calibri&quot;;
+
+color:rgb(255, 255, 255)</string>
     </property>
     <property name="text">
      <string>Sign in or create a new account</string>
@@ -73,16 +86,34 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
    <widget class="QPushButton" name="login">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>390</y>
+      <x>790</x>
+      <y>520</y>
       <width>341</width>
       <height>51</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
-     <string notr="true">border-radius:20px;
-background-color: rgb(170, 255, 255);
-font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+     <string notr="true">QPushButton#login{
+	Background-color:rgba(85,98,112,255);
+	color:rgba(255,255,255,200);
+	border-radius:5px;
+} 
+QPushButton#login:pressed{
+	padding-left:5px;
+	padding-top:5px;
+	background-color:rgba(254, 81, 171, 0.8);
+	background-position:calc(100% - 10px)center;
+}
+QPushButton#login:hover{
+	background-color:rgba(254, 81, 171, 0.8)
+}</string>
     </property>
     <property name="text">
      <string>Log in</string>
@@ -91,16 +122,35 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QPushButton" name="create">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>480</y>
+      <x>790</x>
+      <y>630</y>
       <width>341</width>
       <height>51</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
-     <string notr="true">border-radius:20px;
-background-color: rgb(170, 255, 255);
-font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+     <string notr="true">QPushButton#create{
+	Background-color:rgba(85,98,112,255);
+	color:rgba(255,255,255,200);
+	border-radius:5px;
+} 
+QPushButton#create:pressed{
+	padding-left:5px;
+	padding-top:5px;
+	background-color:rgba(254, 81, 171, 0.8);
+	background-position:calc(100% - 10px)center;
+}
+QPushButton#create:hover{
+	background-color:rgba(254, 81, 171, 0.8)
+}
+font: 75pt &quot;Calibri&quot;;</string>
     </property>
     <property name="text">
      <string>Create a new account</string>
