@@ -1,3 +1,4 @@
+import os
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget,QFileDialog,QVBoxLayout, QTextEdit,QSizePolicy
@@ -13,7 +14,7 @@ class WelcomeScreen(QDialog):
         self.app = app
         self.widget = widget
         super(WelcomeScreen, self).__init__()
-        loadUi("welcomescreen.ui", self)
+        loadUi("../View/welcomescreen.ui", self)
         
         self.login.clicked.connect(self.gotologin)
         self.create.clicked.connect(self.gotocreate)

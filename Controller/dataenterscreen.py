@@ -21,7 +21,7 @@ class dataenterScreen(QDialog):
     da=[]
     def __init__(self):
         super(dataenterScreen, self).__init__()
-        loadUi("enterdata.ui", self)
+        loadUi("../View/enterdata.ui", self)
 
         self.enterdata.clicked.connect(self.enter_data)
         self.Browse.clicked.connect(self.Browsee)
