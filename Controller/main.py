@@ -7,8 +7,6 @@ from PyQt5.uic import loadUi
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 
-import sqlite3
-
 import joblib
 import numpy as np
 
@@ -20,6 +18,9 @@ from sklearn.ensemble import RandomForestClassifier
 #data={}
 
 from welcomescreen import WelcomeScreen
+
+import sqlite3
+from sqlite3 import Error
 
 # main
 app = QApplication(sys.argv)
