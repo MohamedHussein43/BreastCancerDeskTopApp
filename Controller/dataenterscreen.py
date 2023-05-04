@@ -66,12 +66,12 @@ class dataenterScreen(QDialog):
         return new_df
 
     def LogisticModel(self, x_test):
-        loadLogistic = joblib.load('logistic_training_data.joblib')
+        loadLogistic = joblib.load('../Machine_Learning/logistic_training_data.joblib')
         lr_probs = loadLogistic.predict_proba(x_test)[:, 1]
         return lr_probs
     
     def RandomForestModel(self, x_test):
-        loadRandomForest = joblib.load('randomforest_training_data.joblib')
+        loadRandomForest = joblib.load('../Machine_Learning/randomforest_training_data.joblib')
         rf_probs = loadRandomForest.predict_proba(x_test)[:, 1]
         return rf_probs
     
