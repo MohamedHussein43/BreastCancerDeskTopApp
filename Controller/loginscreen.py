@@ -6,14 +6,14 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 import sqlite3
 from LoginAndRegister import CreateAccScreen
-
+import sys,loginres,signupres
 from dataenterscreen import *
 class LoginScreen(QDialog):
     def __init__(self, app, widget):
         self.app = app
         self.widget = widget
         super(LoginScreen, self).__init__()
-        loadUi("login.ui", self)
+        loadUi("../View/login.ui", self)
         self.passwordfield.setEchoMode(QtWidgets.QLineEdit.Password)
         self.login.clicked.connect(self.loginfunction)
         self.label_5.clicked.connect(self.backfunction)
@@ -32,7 +32,7 @@ class LoginScreen(QDialog):
 
         else:
             try:
-                conn = sqlite3.connect("users.db")
+                conn = sqlite3.connect("../Model/users.db")
                 cur = conn.cursor()
                 query = 'SELECT * FROM login_info WHERE username =\''+user+"\'"
                 cur.execute(query)
@@ -55,3 +55,11 @@ class LoginScreen(QDialog):
                         self.error.setText("Invalid username or password")
             except Exception as e:
                 self.error.setText("Invalid username or password")
+if __name__ == "__main__":
+        app = QtWidgets.QApplication(sys.argv)
+        Form = QtWidgets.QWidget()
+
+        ui = Ui_Form()
+        ui.setupUi(Form)
+        Form.show()
+        sys.exit(app.exec_())

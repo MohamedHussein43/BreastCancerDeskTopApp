@@ -3,11 +3,10 @@ import sys
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget,QFileDialog,QVBoxLayout, QTextEdit,QSizePolicy
+from PyQt5.QtGui import QIcon
 from PyQt5.uic import loadUi
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
-
-import sqlite3
 
 import joblib
 import numpy as np
@@ -21,6 +20,9 @@ from sklearn.ensemble import RandomForestClassifier
 
 from welcomescreen import WelcomeScreen
 
+import sqlite3
+from sqlite3 import Error
+
 # main
 app = QApplication(sys.argv)
 widget = QtWidgets.QStackedWidget()
@@ -29,8 +31,10 @@ size_policy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 welcome.setSizePolicy(size_policy)
 
 widget.addWidget(welcome)
+widget.setWindowTitle("Breast Cancer Detection")
+widget.setFixedSize(1920,1100)
 
-widget.setGeometry(100, 100, 1200, 800)
+widget.setWindowIcon(QIcon('pink-ribbon.png'))
 widget.setWindowFlags(Qt.WindowMinMaxButtonsHint |Qt.WindowCloseButtonHint )
 widget.show()
 sys.exit(app.exec_())
