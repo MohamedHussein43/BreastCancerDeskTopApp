@@ -332,7 +332,6 @@ ui.setupUi(win)
 # -----------Table--------------
 column = 4
 
-
 def Table_info():
         vbox = QVBoxLayout()
         database = Database()
@@ -389,9 +388,26 @@ def Table_info():
 
 
 # double click ----> change print withe the action
-def doublclick():
+def doublclick(item):
         for item in ui.tableWidget.selectedItems():
                 print(item.row(), item.column(), item.text())
+                data = gitDataFromTable(item.row())
+                ui.NameText.setText(str(data['name']))
+                ui.AgeText.setText(str(data['age']))
+                ui.PhoneText.setText(str(data['phone']))
+                ui.WeightText.setText(str(data['weight']))
+                ui.EmailText.setText(str(data['email']))
+                ui.StatusText.setText(str(data['status']))
+                ui.PredictionText.setText(str(data['Prediction']))
+                
+def gitDataFromTable(rowNum):
+       database = Database()
+       Table_information = database.getPatients()
+       for i in range(rowNum+1):
+              if i == rowNum:
+                      return Table_information[i]
+        
+        
 
 
 ui.tableWidget.doubleClicked.connect(doublclick)
