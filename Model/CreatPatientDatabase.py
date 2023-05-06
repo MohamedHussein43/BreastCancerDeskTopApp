@@ -69,8 +69,6 @@ class Backdatabase():
 
     def insert_data_patient_table(self,conn, patientData):
         # Create a connection to the SQLite database
-        conn = sqlite3.connect('Patient.db')
-
         # Create a cursor object
         cursor = conn.cursor()
 
@@ -87,6 +85,12 @@ class Backdatabase():
 
         # Commit the changes to the database
         conn.commit()
+
+    def Deletepatient(self, conn, ID):
+        c = conn.cursor()
+        c.execute("DELETE FROM patients WHERE id=?", (ID,))
+        conn.commit()
+        conn.close()
 
     def retreve_data_patient_table(self,conn):
         cursor = conn.cursor()
@@ -114,6 +118,16 @@ class Backdatabase():
             patient_dict = dict(zip(keys, patient))
             patients_dict_list.append(patient_dict)
         return patients_dict_list
+    def insert_medical_data_table(self,conn, medicalpatientData):
+        cursor = conn.cursor()
+        query = "INSERT INTO medical_data(patient_id,radius_mean, texture_mean, perimeter_mean, area_mean, smoothness_mean, compactness_mean, concavity_mean, concave_points_mean, symmetry_mean,fractal_dimension_mean,radius_se, texture_se, perimeter_se, area_se, smoothness_se, compactness_se, concavity_se, concave_points_se, symmetry_se, fractal_dimension_se, radius_worst, texture_worst, perimeter_worst, area_worst, smoothness_worst, compactness_worst, concavity_worst,concave_points_worst, symmetry_worst,fractal_dimension_worst) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+        if len(medicalpatientData) == 30:
+            cursor.execute(query, medicalpatientData)
+            print("Data has been added succecfully!")
+            print(patientData)
+        else:
+            print("There are some missing data")
+        conn.commit()
 
 #-----main-------------
 class Database():
