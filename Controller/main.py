@@ -2,7 +2,7 @@ import csv
 import sys
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget,QFileDialog,QVBoxLayout, QTextEdit,QSizePolicy
+from PyQt5.QtWidgets import QDialog, QApplication, QWidget,QFileDialog,QVBoxLayout, QTextEdit,QSizePolicy,QLayout
 from PyQt5.QtGui import QIcon
 from PyQt5.uic import loadUi
 from PyQt5.QtGui import QPixmap
@@ -25,16 +25,21 @@ from sqlite3 import Error
 
 # main
 app = QApplication(sys.argv)
+layout = QVBoxLayout()
 widget = QtWidgets.QStackedWidget()
+
 welcome = WelcomeScreen(app,widget)
 size_policy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 welcome.setSizePolicy(size_policy)
-
+layout.addWidget(welcome)
 widget.addWidget(welcome)
 widget.setWindowTitle("Breast Cancer Detection")
-widget.setFixedSize(1920,1100)
+
 
 widget.setWindowIcon(QIcon('pink-ribbon.png'))
 widget.setWindowFlags(Qt.WindowMinMaxButtonsHint |Qt.WindowCloseButtonHint )
+
+
+widget.sizeHint()
 widget.show()
 sys.exit(app.exec_())

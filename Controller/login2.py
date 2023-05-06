@@ -9,8 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QVBoxLayout,QHBoxLayout,QGroupBox,QMessageBox
 
-
+vbox = QVBoxLayout()
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -124,8 +125,13 @@ class Ui_Dialog(object):
 import sys,loginres
 if __name__ == "__main__":
         app = QtWidgets.QApplication(sys.argv)
+
+
         Form = QtWidgets.QWidget()
         ui = Ui_Dialog()
         ui.setupUi(Form)
+
+
+
         Form.show()
         sys.exit(app.exec_())
