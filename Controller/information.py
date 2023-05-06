@@ -11,6 +11,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QTableWidget,QVBoxLayout,QHBoxLayout,QGroupBox,QTableWidgetItem,QPushButton
 import sys
+sys.path.insert(1,'..//Model')
+from CreatPatientDatabase import *
+#import CreatPatientDatabase
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -166,16 +169,19 @@ ui.setupUi(win)
 column = 4
 def Table_info():
     vbox = QVBoxLayout()
-    Table_information = [{'Id':'1', 'Name':'mmm' ,'BLABLA':'sss'},
+    database = Database()
+    Table_information = database.getPatients()
+    print (Table_information)
+    '''[{'Id':'1', 'Name':'mmm' ,'BLABLA':'sss'},
         {'Id': '2', 'Name': 'ss', 'BLABLA': 'sss'},
          {'Id': '3', 'Name': 'dd', 'BLABLA': 'aa'},
-        {'Id': '4', 'Name': 'fff', 'BLABLA': 'ww'},]
+        {'Id': '4', 'Name': 'fff', 'BLABLA': 'ww'},]'''
 
     tb_row = ui.tableWidget.setRowCount(len(Table_information))
     vbox.addWidget(tb_row)
     tb_col = ui.tableWidget.setColumnCount(column)
     vbox.addWidget(tb_col)
-    ui.tableWidget.setHorizontalHeaderLabels(('Id', 'Name', 'BLABLA'))
+    ui.tableWidget.setHorizontalHeaderLabels(('Id', 'Name', 'Phone','Cancer Level'))
     ui.tableWidget.setFixedSize(800,300)
     id_width = ui.tableWidget.setColumnWidth(0, 50) #set the id column width
     vbox.addWidget(id_width)
@@ -186,15 +192,27 @@ def Table_info():
 
     for i in range(column):
         ui.tableWidget.setColumnWidth(i, 195)
-
+    Cancer_Level=[0,0,0]
     for info in Table_information:
 
-        ui.tableWidget.setItem(index,0,QTableWidgetItem(str(info['Id'])))
-        ui.tableWidget.setItem(index,1,QTableWidgetItem(str(info['Name'])))
-        ui.tableWidget.setItem(index, 2, QTableWidgetItem(str(info['BLABLA'])))
+        ui.tableWidget.setItem(index,0,QTableWidgetItem(str(info['id'])))
+        ui.tableWidget.setItem(index,1,QTableWidgetItem(str(info['name'])))
+        ui.tableWidget.setItem(index, 2, QTableWidgetItem(str(info['phone'])))
+        
+        if info['Prediction'] <=0.3:
+                ui.tableWidget.setItem(index, 3, QTableWidgetItem(str('Low')))
+                Cancer_Level[0] += 1
+        elif info['Prediction'] >=0.7:
+             ui.tableWidget.setItem(index, 3, QTableWidgetItem(str('Hiegh')))
+             Cancer_Level[2] += 1
+        else:
+             ui.tableWidget.setItem(index, 3, QTableWidgetItem(str('Middel')))
+             Cancer_Level[1] += 1
         button = QPushButton("Addpatient")
+    
         ui.tableWidget.setCellWidget(index, len(Table_information), button)
         index += 1
+    print(Cancer_Level)
 
 
     win.setLayout(vbox)
