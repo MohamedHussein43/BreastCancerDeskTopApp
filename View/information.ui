@@ -36,7 +36,7 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
      <x>50</x>
      <y>90</y>
      <width>381</width>
-     <height>601</height>
+     <height>661</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -107,42 +107,13 @@ QPushButton#LogOut:hover{
 background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 142), stop:1 rgba(255, 255, 255, 255));</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Addpatient">
-   <property name="geometry">
-    <rect>
-     <x>1250</x>
-     <y>590</y>
-     <width>93</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton#Addpatient{
-	Background-color:rgba(85,98,112,255);
-	color:rgba(255,255,255,200);
-	border-radius:5px;
-} 
-QPushButton#Addpatient:pressed{
-	padding-left:5px;
-	padding-top:5px;
-	background-color:rgba(254, 81, 171, 0.8);
-	background-position:calc(100% - 10px)center;
-}
-QPushButton#Addpatient:hover{
-	background-color:rgba(254, 81, 171, 0.8)
-}</string>
-   </property>
-   <property name="text">
-    <string>Add</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="deletepatient">
    <property name="geometry">
     <rect>
-     <x>1150</x>
-     <y>590</y>
-     <width>93</width>
-     <height>28</height>
+     <x>180</x>
+     <y>687</y>
+     <width>121</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -652,6 +623,340 @@ font: 19pt &quot;Calibri&quot;;</string>
    </property>
    <property name="text">
     <string>Prediction </string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ShowtBar">
+   <property name="geometry">
+    <rect>
+     <x>1210</x>
+     <y>590</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#ShowtBar{
+	Background-color:rgba(85,98,112,255);
+	color:rgba(255,255,255,200);
+	border-radius:5px;
+} 
+QPushButton#ShowtBar:pressed{
+	padding-left:5px;
+	padding-top:5px;
+	background-color:rgba(254, 81, 171, 0.8);
+	background-position:calc(100% - 10px)center;
+}
+QPushButton#ShowtBar:hover{
+	background-color:rgba(254, 81, 171, 0.8)
+}</string>
+   </property>
+   <property name="text">
+    <string>Add</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="addtable">
+   <property name="geometry">
+    <rect>
+     <x>1490</x>
+     <y>90</y>
+     <width>381</width>
+     <height>661</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius : 20px;
+background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 142), stop:1 rgba(255, 255, 255, 255));</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="newEmail">
+   <property name="geometry">
+    <rect>
+     <x>1530</x>
+     <y>480</y>
+     <width>131</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 0), stop:1 rgba(255, 255, 255, 255));
+color: rgb(255,255,255);
+font: 23pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string>email </string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="newPredText">
+   <property name="geometry">
+    <rect>
+     <x>1650</x>
+     <y>600</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 85), stop:1 rgba(255, 255, 255, 255));
+border-radius:20px;
+color:rgb(255,255,255);
+font: 18pt bold&quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="newPred">
+   <property name="geometry">
+    <rect>
+     <x>1510</x>
+     <y>600</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 0), stop:1 rgba(255, 255, 255, 255));
+color: rgb(255,255,255);
+font: 19pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Prediction </string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="newPhoneText">
+   <property name="geometry">
+    <rect>
+     <x>1650</x>
+     <y>360</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 85), stop:1 rgba(255, 255, 255, 255));
+border-radius:20px;
+color:rgb(255,255,255);
+font: 18pt bold&quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="newWeight">
+   <property name="geometry">
+    <rect>
+     <x>1530</x>
+     <y>420</y>
+     <width>151</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 0), stop:1 rgba(255, 255, 255, 255));
+color: rgb(255,255,255);
+font: 23pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Weight</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="newAge">
+   <property name="geometry">
+    <rect>
+     <x>1530</x>
+     <y>300</y>
+     <width>131</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 0), stop:1 rgba(255, 255, 255, 255));
+color: rgb(255,255,255);
+font: 23pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Age </string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="newNameText">
+   <property name="geometry">
+    <rect>
+     <x>1650</x>
+     <y>240</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 85), stop:1 rgba(255, 255, 255, 255));
+border-radius:20px;
+color:rgb(255,255,255);
+font: 18pt bold&quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="newName">
+   <property name="geometry">
+    <rect>
+     <x>1530</x>
+     <y>240</y>
+     <width>131</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 0), stop:1 rgba(255, 255, 255, 255));
+color: rgb(255,255,255);
+font: 23pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Name </string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="newAgeText">
+   <property name="geometry">
+    <rect>
+     <x>1650</x>
+     <y>300</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 85), stop:1 rgba(255, 255, 255, 255));
+border-radius:20px;
+color:rgb(255,255,255);
+font: 18pt bold&quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="newPhone">
+   <property name="geometry">
+    <rect>
+     <x>1530</x>
+     <y>360</y>
+     <width>131</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 0), stop:1 rgba(255, 255, 255, 255));
+color: rgb(255,255,255);
+font: 23pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Phone </string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="newEmailTex">
+   <property name="geometry">
+    <rect>
+     <x>1650</x>
+     <y>480</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 85), stop:1 rgba(255, 255, 255, 255));
+border-radius:20px;
+color:rgb(255,255,255);
+font: 18pt bold&quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="newWeightText">
+   <property name="geometry">
+    <rect>
+     <x>1650</x>
+     <y>420</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 85), stop:1 rgba(255, 255, 255, 255));
+border-radius:20px;
+color:rgb(255,255,255);
+font: 18pt bold&quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="newStatusText">
+   <property name="geometry">
+    <rect>
+     <x>1650</x>
+     <y>540</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 85), stop:1 rgba(255, 255, 255, 255));
+border-radius:20px;
+color:rgb(255,255,255);
+font: 18pt bold&quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="newStatus">
+   <property name="geometry">
+    <rect>
+     <x>1530</x>
+     <y>540</y>
+     <width>131</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 0), stop:1 rgba(255, 255, 255, 255));
+color: rgb(255,255,255);
+font: 23pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Status </string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="AddNew">
+   <property name="geometry">
+    <rect>
+     <x>1630</x>
+     <y>690</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#AddNew{
+	Background-color:rgba(85,98,112,255);
+	color:rgba(255,255,255,200);
+	border-radius:5px;
+} 
+QPushButton#AddNew:pressed{
+	padding-left:5px;
+	padding-top:5px;
+	background-color:rgba(254, 81, 171, 0.8);
+	background-position:calc(100% - 10px)center;
+}
+QPushButton#AddNew:hover{
+	background-color:rgba(254, 81, 171, 0.8)
+}</string>
+   </property>
+   <property name="text">
+    <string>Add Patient</string>
    </property>
   </widget>
  </widget>
