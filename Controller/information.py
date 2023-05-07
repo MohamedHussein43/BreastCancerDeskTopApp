@@ -586,20 +586,34 @@ def hide_show():
         global hidden
         if hidden:
                 ui.addtable.show()
+
                 ui.newName.show()
                 ui.newNameText.show()
+                ui.newNameText.setText('Olivia')
+
                 ui.newAge.show()
                 ui.newAgeText.show()
+                ui.newAgeText.setText('43')
+
                 ui.newPhone.show()
                 ui.newPhoneText.show()
+                ui.newPhoneText.setText('6541531')
+
                 ui.newWeight.show()
                 ui.newWeightText.show()
+                ui.newWeightText.setText('65')
+
                 ui.newEmail.show()
                 ui.newEmailTex.show()
+                ui.newEmailTex.setText('aslmd@Qgmail.com')
+
                 ui.newStatus.show()
                 ui.newStatusText.show()
+                ui.newStatusText.setText('married')
+
                 ui.newPred.show()
                 ui.newPredText.show()
+
                 ui.Browse.show()
                 ui.filename.show()
                 ui.AddNew.show()
@@ -672,9 +686,21 @@ def InsertPatient():
                 print(data)
                 database = Database()
                 database.insertPatient(data)
+                Table_information = database.getPatients()
+                global medicaldata
+                print("------------medicaldata--------")
+                print(medicaldata)
+                print(type(medicaldata))
+                print("------------medicaldata--------")
+                (medicaldata.insert(0, int(Table_information[-1]['id'])))
+                database.setMedicalData(medicaldata)
                 Table_info()
                 hide_show()
                 print('Done')
+                print("------------medicaldata--------")
+                print(medicaldata)
+                print(type(medicaldata))
+                print("------------medicaldata--------")
 
         else:
                 print("Enter all data")
@@ -694,10 +720,13 @@ def DeletePatient():
                 ui.PredictionText.setText('')
 
 from dataenterscreen import *
+medicaldata = []
 def Browsee():
         d = dataenterScreen()
-        result = d.Browsee()
-        
+        result, allData= d.Browsee()
+        global medicaldata
+        medicaldata = list(allData[0])
+        print (allData)
         ui.newPredText.setText(str("{:.2f}".format(float(result)*100)))
 
 ui.tableWidget.doubleClicked.connect(doublclick)

@@ -101,4 +101,4 @@ class dataenterScreen(QDialog):
         x_train = scaler.fit_transform(x_train)
         x_test = scaler.transform(x_test)
 
-        return self.Hybrid(self.prepare(x_test))
+        return self.Hybrid(self.prepare(x_test)), x_test

@@ -119,11 +119,11 @@ class Backdatabase():
         return patients_dict_list
     def insert_medical_data_table(self,conn, medicalpatientData):
         cursor = conn.cursor()
-        query = "INSERT INTO medical_data(patient_id,radius_mean, texture_mean, perimeter_mean, area_mean, smoothness_mean, compactness_mean, concavity_mean, concave_points_mean, symmetry_mean,fractal_dimension_mean,radius_se, texture_se, perimeter_se, area_se, smoothness_se, compactness_se, concavity_se, concave_points_se, symmetry_se, fractal_dimension_se, radius_worst, texture_worst, perimeter_worst, area_worst, smoothness_worst, compactness_worst, concavity_worst,concave_points_worst, symmetry_worst,fractal_dimension_worst) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+        query = "INSERT INTO medical_data(patient_id,radius_mean, texture_mean, perimeter_mean, area_mean, smoothness_mean, compactness_mean, concavity_mean, concave_points_mean, symmetry_mean,fractal_dimension_mean     ,radius_se, texture_se, perimeter_se, area_se, smoothness_se, compactness_se, concavity_se, concave_points_se, symmetry_se, fractal_dimension_se            , radius_worst, texture_worst, perimeter_worst, area_worst, smoothness_worst, compactness_worst, concavity_worst,concave_points_worst, symmetry_worst,fractal_dimension_worst) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
         if len(medicalpatientData) == 30:
             cursor.execute(query, medicalpatientData)
-            print("Data has been added succecfully!")
-            print(patientData)
+            print("Medical Data has been added succecfully!")
+            print(medicalpatientData)
         else:
             print("There are some missing data")
         conn.commit()
@@ -154,7 +154,10 @@ class Database():
     def deletePatient(self, ID):
         self.database.Deletepatient(self.conn, ID)
         print("deleted succecfully: ",ID)
-
+    def setMedicalData(self,Data):
+        self.database.insert_medical_data_table(self.create_connection(), Data)
+        print("medical data add succecfully!")
+        print(Data)
     def getPatients(self):
         data = self.database.list_of_lists_to_list_of_dicts(self.conn)
         self.conn.close()
