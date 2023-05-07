@@ -549,6 +549,7 @@ def gotologin():
 # keep track if hidden or not variable
 hidden = False
 def hide_show():
+        global hidden
         if hidden:
                 ui.addtable.show()
                 ui.newName.show()
@@ -593,5 +594,6 @@ ui.tableWidget.doubleClicked.connect(doublclick)
 ui.ShowtBar.clicked.connect(hide_show)
 # ----------------Main------
 Table_info()
+hide_show()
 win.show()
 sys.exit(app.exec_())
