@@ -7,7 +7,7 @@ import sys
 
 sys.path.insert(1,'..//Model')
 from CreatPatientDatabase import *
-Cancer_Level = [0, 0, 0]
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -420,8 +420,8 @@ class Ui_Dialog(object):
         self.label.setText(_translate("Dialog", "TextLabel"))
         self.LogOut.setText(_translate("Dialog", "LogOut"))
         self.deletepatient.setText(_translate("Dialog", "Delete"))
-        self.label_10.setText(_translate("Dialog", " Medium"))
-        self.label_11.setText(_translate("Dialog", "   Hard"))
+        self.label_10.setText(_translate("Dialog", " Middle"))
+        self.label_11.setText(_translate("Dialog", "   High"))
         self.label_12.setText(_translate("Dialog", "Number of patients"))
         self.label_13.setText(_translate("Dialog", "   Low"))
         self.label_3.setText(_translate("Dialog", "Name "))
@@ -431,7 +431,7 @@ class Ui_Dialog(object):
         self.label_7.setText(_translate("Dialog", "email "))
         self.label_8.setText(_translate("Dialog", "Status "))
         self.label_9.setText(_translate("Dialog", "Prediction "))
-        self.ShowtBar.setText(_translate("Dialog", "Add"))
+        self.ShowtBar.setText(_translate("Dialog", "Add Patient"))
         self.newEmail.setText(_translate("Dialog", "email "))
         self.newPred.setText(_translate("Dialog", "Prediction "))
         self.newWeight.setText(_translate("Dialog", "Weight"))
@@ -439,7 +439,7 @@ class Ui_Dialog(object):
         self.newName.setText(_translate("Dialog", "Name "))
         self.newPhone.setText(_translate("Dialog", "Phone "))
         self.newStatus.setText(_translate("Dialog", "Status "))
-        self.AddNew.setText(_translate("Dialog", "Add Patient"))
+        self.AddNew.setText(_translate("Dialog", "Submit"))
 
     # the method of load products
     '''def loadProducts(self):
@@ -461,7 +461,9 @@ def Table_info():
         vbox = QVBoxLayout()
         database = Database()
         Table_information = database.getPatients()
+        print("-----------------------------------------------------------")
         print(Table_information)
+        print("-----------------------------------------------------------")
         '''[{'Id':'1', 'Name':'mmm' ,'BLABLA':'sss'},
             {'Id': '2', 'Name': 'ss', 'BLABLA': 'sss'},
              {'Id': '3', 'Name': 'dd', 'BLABLA': 'aa'},
@@ -479,7 +481,7 @@ def Table_info():
         # fill the data
         # ya zhz you can use a list of the dictionaray to retriev the data from the data base
         index = 0  # the number of the keys in the dictionary from data base
-
+        Cancer_Level = [0, 0, 0]
         for i in range(column):
                 ui.tableWidget.setColumnWidth(i, 195)
 
@@ -494,10 +496,10 @@ def Table_info():
                         Cancer_Level[0] += 1
 
                 elif info['Prediction'] >= 0.7:
-                        ui.tableWidget.setItem(index, 3, QTableWidgetItem(str('Hiegh')))
+                        ui.tableWidget.setItem(index, 3, QTableWidgetItem(str('High')))
                         Cancer_Level[2] += 1
                 else:
-                        ui.tableWidget.setItem(index, 3, QTableWidgetItem(str('Middel')))
+                        ui.tableWidget.setItem(index, 3, QTableWidgetItem(str('Middle')))
                         Cancer_Level[1] += 1
                 button = QPushButton("Addpatient")
 
@@ -573,25 +575,77 @@ def hide_show():
                 ui.addtable.hide()
                 ui.newName.hide()
                 ui.newNameText.hide()
+                ui.newNameText.setText('')
+
                 ui.newAge.hide()
                 ui.newAgeText.hide()
+                ui.newAgeText.setText('')
+
                 ui.newPhone.hide()
                 ui.newPhoneText.hide()
+                ui.newPhoneText.setText('')
+                
                 ui.newWeight.hide()
                 ui.newWeightText.hide()
+                ui.newWeightText.setText('')
+
                 ui.newEmail.hide()
                 ui.newEmailTex.hide()
+                ui.newEmailTex.setText('')
+
                 ui.newStatus.hide()
                 ui.newStatusText.hide()
+                ui.newStatusText.setText('')
+
                 ui.newPred.hide()
                 ui.newPredText.hide()
+                ui.newPredText.setText('')
+
                 ui.AddNew.hide()
                 hidden = True
+from datetime import date
 
+def InsertPatient():
+       
+       # Get the current date
+       today = date.today()
+       data = []
+       name = ui.newNameText.text()
+       age = ui.newAgeText.text()
+       phone = ui.newPhoneText.text()
+       weight = ui.newWeightText.text()
+       email = ui.newEmailTex.text()
+       status = ui.newStatusText.text()
+       pred = ui.newPredText.text()
+       data.append(name)
+       data.append(age)
+       data.append(phone)
+       data.append(weight)
+       data.append(email)
+       data.append(status)
+       data.append(str(today))
+       data.append(pred)
+       f=True
+       for i in data:
+              print(i)
+              if len(i) ==0:
+                     f = False
+       if f:
+              print(data)
+              database = Database()
+              database.insertPatient(data)
+              Table_info()
+              hide_show()
+              print('Done')
+
+       else:
+              print("Enter all data")
+        
 
 ui.tableWidget.doubleClicked.connect(doublclick)
 #ui.LogOut.clicked.connect(gotologin)
 ui.ShowtBar.clicked.connect(hide_show)
+ui.AddNew.clicked.connect(InsertPatient)
 # ----------------Main------
 Table_info()
 hide_show()
