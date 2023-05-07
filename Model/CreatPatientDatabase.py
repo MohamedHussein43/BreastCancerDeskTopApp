@@ -17,7 +17,6 @@ class Backdatabase():
                         weight INTEGER NOT NULL,
                         email TEXT NOT NULL,
                         status TEXT NOT NULL,
-                        dateOfBirth DATE NOT NULL,
                         reportDate DATE NOT NULL,
                         Prediction REAL NOT NULL
                         )''')
@@ -73,10 +72,10 @@ class Backdatabase():
         cursor = conn.cursor()
 
         # Define the SQL query to insert a new record
-        query = "INSERT INTO patients(name, age, phone, weight, email, status, dateOfBirth, reportDate, Prediction) VALUES(?,?,?,?,?,?,?,?,?)"
+        query = "INSERT INTO patients(name, age, phone, weight, email, status, reportDate, Prediction) VALUES(?,?,?,?,?,?,?,?)"
 
         # Execute the SQL query
-        if len(patientData) == 9:
+        if len(patientData) == 8:
             cursor.execute(query, patientData)
             print("Data has been added succecfully!")
             print(patientData)
@@ -112,7 +111,7 @@ class Backdatabase():
 
     def list_of_lists_to_list_of_dicts(self,conn):
         patients_data = self.retreve_data_patient_table(conn)
-        keys = ['id','name', 'age', 'phone', 'weight', 'email', 'status', 'dateOfBirth', 'reportDate', 'Prediction']
+        keys = ['id','name', 'age', 'phone', 'weight', 'email', 'status', 'reportDate', 'Prediction']
         patients_dict_list = []
         for patient in patients_data:
             patient_dict = dict(zip(keys, patient))
@@ -152,27 +151,41 @@ class Database():
 
         return conn
     
+    def deletePatient(self, ID):
+        self.database.Deletepatient(self.conn, ID)
+        print("deleted succecfully: ",ID)
+
     def getPatients(self):
         data = self.database.list_of_lists_to_list_of_dicts(self.conn)
         self.conn.close()
         return data
+    def insertPatient(self, data):
+        self.database.insert_data_patient_table(self.conn, data)
+        print("data inserted correctly")
+
     
 #create_patient_table(conn)
 #create_medical_data_table(conn)
 #delete_data_patient_table(conn)
-'''row1 = ["John Doe", 30, "555-1234", 75.5, "john.doe@example.com", "active", "1992-01-01", "2023-05-06", 0.8]
-row2 = ["Jane Smith", 45, "555-5678", 62.2, "jane.smith@example.com", "inactive", "1977-04-12", "2023-05-06", 0.2]
-row3 = ["Bob Johnson", 50, "555-9876", 85.1, "bob.johnson@example.com", "active", "1972-08-29", "2023-05-06", 0.5]
+'''d = Database()
+conn = d.create_connection()
+b = Backdatabase(conn)
+row1 = ["Emma Doe", 30, "555-1234", 75.5, "john.doe@example.com", "single", "2023-05-06", 0.8]
+row2 = ["Sophia Smith", 45, "555-5678", 62.2, "jane.smith@example.com", "married", "2023-05-06", 0.2]
+row3 = ["Ava Johnson", 50, "555-9876", 85.1, "bob.johnson@example.com", "married", "2023-05-06", 0.5]
 patientData = [row1, row2, row3]
 for i in patientData:
-    insert_data_patient_table(conn, i)
+    b.insert_data_patient_table(conn, i)
 print("===================================================================")
 d = Database()
 patients_dict_list = d.getPatients()
 print(patients_dict_list)
 print("===================================================================")
-
 '''
+'''d = Database()
+cnn = d.create_connection()
+b = Backdatabase(cnn)
+b.create_patient_table(cnn)'''
 
 
 
