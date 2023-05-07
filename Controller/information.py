@@ -693,12 +693,12 @@ def DeletePatient():
                 ui.StatusText.setText('')
                 ui.PredictionText.setText('')
 
-
+from dataenterscreen import *
 def Browsee():
-        fname = QFileDialog.getOpenFileName(self, 'open file', 'C:', "CSV files (*.csv)")
-        self.filename.setText(fname[0])
-        path = fname[0]
-
+        d = dataenterScreen()
+        result = d.Browsee()
+        
+        ui.newPredText.setText(str("{:.2f}".format(float(result)*100)))
 
 ui.tableWidget.doubleClicked.connect(doublclick)
 # ui.LogOut.clicked.connect(gotologin)
