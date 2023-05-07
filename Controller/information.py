@@ -515,10 +515,13 @@ def Table_info():
 
 
 # double click ----> change print withe the action
+UserID = -1
 def doublclick(item):
         for item in ui.tableWidget.selectedItems():
                 print(item.row(), item.column(), item.text())
                 data = gitDataFromTable(item.row())
+                global UserID
+                UserID = data['id']
                 ui.NameText.setText(str(data['name']))
                 ui.AgeText.setText(str(data['age']))
                 ui.PhoneText.setText(str(data['phone']))
@@ -641,11 +644,24 @@ def InsertPatient():
        else:
               print("Enter all data")
         
+def DeletePatient():
+       database = Database()
+       if UserID > -1:
+              database.deletePatient(UserID)
+              Table_info()
+              ui.NameText.setText('')
+              ui.AgeText.setText('')
+              ui.PhoneText.setText('')
+              ui.WeightText.setText('')
+              ui.EmailText.setText('')
+              ui.StatusText.setText('')
+              ui.PredictionText.setText('')
 
 ui.tableWidget.doubleClicked.connect(doublclick)
 #ui.LogOut.clicked.connect(gotologin)
 ui.ShowtBar.clicked.connect(hide_show)
 ui.AddNew.clicked.connect(InsertPatient)
+ui.deletepatient.clicked.connect(DeletePatient)
 # ----------------Main------
 Table_info()
 hide_show()

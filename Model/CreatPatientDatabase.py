@@ -151,6 +151,10 @@ class Database():
 
         return conn
     
+    def deletePatient(self, ID):
+        self.database.Deletepatient(self.conn, ID)
+        print("deleted succecfully: ",ID)
+
     def getPatients(self):
         data = self.database.list_of_lists_to_list_of_dicts(self.conn)
         self.conn.close()
