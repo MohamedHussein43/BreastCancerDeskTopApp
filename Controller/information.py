@@ -1,5 +1,3 @@
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QTableWidget,QVBoxLayout,QHBoxLayout,QGroupBox,QTableWidgetItem,QPushButton,QLineEdit
 import sys
@@ -290,7 +288,7 @@ class Ui_Dialog(object):
 "}")
         self.ShowtBar.setObjectName("ShowtBar")
         self.addtable = QtWidgets.QLabel(Dialog)
-        self.addtable.setGeometry(QtCore.QRect(1490, 90, 381, 661))
+        self.addtable.setGeometry(QtCore.QRect(1490, 90, 381, 691))
         self.addtable.setStyleSheet("border-radius : 20px;\n"
 "background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 142), stop:1 rgba(255, 255, 255, 255));")
         self.addtable.setText("")
@@ -394,7 +392,7 @@ class Ui_Dialog(object):
 "font: 23pt \"Calibri\";")
         self.newStatus.setObjectName("newStatus")
         self.AddNew = QtWidgets.QPushButton(Dialog)
-        self.AddNew.setGeometry(QtCore.QRect(1630, 690, 121, 31))
+        self.AddNew.setGeometry(QtCore.QRect(1510, 680, 121, 31))
         self.AddNew.setStyleSheet("QPushButton#AddNew{\n"
 "    Background-color:rgba(85,98,112,255);\n"
 "    color:rgba(255,255,255,200);\n"
@@ -410,6 +408,31 @@ class Ui_Dialog(object):
 "    background-color:rgba(254, 81, 171, 0.8)\n"
 "}")
         self.AddNew.setObjectName("AddNew")
+        self.Browse = QtWidgets.QPushButton(Dialog)
+        self.Browse.setGeometry(QtCore.QRect(1510, 730, 121, 31))
+        self.Browse.setStyleSheet("QPushButton#Browse{\n"
+"    Background-color:rgba(85,98,112,255);\n"
+"    color:rgba(255,255,255,200);\n"
+"    border-radius:5px;\n"
+"} \n"
+"QPushButton#Browse:pressed{\n"
+"    padding-left:5px;\n"
+"    padding-top:5px;\n"
+"    background-color:rgba(254, 81, 171, 0.8);\n"
+"    background-position:calc(100% - 10px)center;\n"
+"}\n"
+"QPushButton#Browse:hover{\n"
+"    background-color:rgba(254, 81, 171, 0.8)\n"
+"}")
+        self.Browse.setObjectName("Browse")
+        self.filename = QtWidgets.QLineEdit(Dialog)
+        self.filename.setGeometry(QtCore.QRect(1640, 720, 201, 41))
+        self.filename.setStyleSheet("background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 85), stop:1 rgba(255, 255, 255, 255));\n"
+"border-radius:20px;\n"
+"color:rgb(255,255,255);\n"
+"font: 18pt bold\"Calibri\";")
+        self.filename.setText("")
+        self.filename.setObjectName("filename")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -420,8 +443,8 @@ class Ui_Dialog(object):
         self.label.setText(_translate("Dialog", "TextLabel"))
         self.LogOut.setText(_translate("Dialog", "LogOut"))
         self.deletepatient.setText(_translate("Dialog", "Delete"))
-        self.label_10.setText(_translate("Dialog", " Middle"))
-        self.label_11.setText(_translate("Dialog", "   High"))
+        self.label_10.setText(_translate("Dialog", " Medium"))
+        self.label_11.setText(_translate("Dialog", "   Hard"))
         self.label_12.setText(_translate("Dialog", "Number of patients"))
         self.label_13.setText(_translate("Dialog", "   Low"))
         self.label_3.setText(_translate("Dialog", "Name "))
@@ -431,7 +454,7 @@ class Ui_Dialog(object):
         self.label_7.setText(_translate("Dialog", "email "))
         self.label_8.setText(_translate("Dialog", "Status "))
         self.label_9.setText(_translate("Dialog", "Prediction "))
-        self.ShowtBar.setText(_translate("Dialog", "Add Patient"))
+        self.ShowtBar.setText(_translate("Dialog", "Add"))
         self.newEmail.setText(_translate("Dialog", "email "))
         self.newPred.setText(_translate("Dialog", "Prediction "))
         self.newWeight.setText(_translate("Dialog", "Weight"))
@@ -439,7 +462,8 @@ class Ui_Dialog(object):
         self.newName.setText(_translate("Dialog", "Name "))
         self.newPhone.setText(_translate("Dialog", "Phone "))
         self.newStatus.setText(_translate("Dialog", "Status "))
-        self.AddNew.setText(_translate("Dialog", "Submit"))
+        self.AddNew.setText(_translate("Dialog", "Add Patient"))
+        self.Browse.setText(_translate("Dialog", "Upload"))
 
     # the method of load products
     '''def loadProducts(self):
@@ -516,6 +540,8 @@ def Table_info():
 
 # double click ----> change print withe the action
 UserID = -1
+
+
 def doublclick(item):
         for item in ui.tableWidget.selectedItems():
                 print(item.row(), item.column(), item.text())
@@ -538,6 +564,7 @@ def gitDataFromTable(rowNum):
                 if i == rowNum:
                         return Table_information[i]
 
+
 '''# login methode -----------
 from createaccscreen import *
 from loginscreen import *
@@ -553,6 +580,8 @@ def gotologin():
 
 # keep track if hidden or not variable
 hidden = False
+
+
 def hide_show():
         global hidden
         if hidden:
@@ -571,7 +600,10 @@ def hide_show():
                 ui.newStatusText.show()
                 ui.newPred.show()
                 ui.newPredText.show()
+                ui.Browse.show()
+                ui.filename.show()
                 ui.AddNew.show()
+
 
                 hidden = False
         else:
@@ -587,7 +619,7 @@ def hide_show():
                 ui.newPhone.hide()
                 ui.newPhoneText.hide()
                 ui.newPhoneText.setText('')
-                
+
                 ui.newWeight.hide()
                 ui.newWeightText.hide()
                 ui.newWeightText.setText('')
@@ -603,65 +635,77 @@ def hide_show():
                 ui.newPred.hide()
                 ui.newPredText.hide()
                 ui.newPredText.setText('')
-
+                ui.Browse.hide()
+                ui.filename.hide()
                 ui.AddNew.hide()
                 hidden = True
+
+
 from datetime import date
 
-def InsertPatient():
-       
-       # Get the current date
-       today = date.today()
-       data = []
-       name = ui.newNameText.text()
-       age = ui.newAgeText.text()
-       phone = ui.newPhoneText.text()
-       weight = ui.newWeightText.text()
-       email = ui.newEmailTex.text()
-       status = ui.newStatusText.text()
-       pred = ui.newPredText.text()
-       data.append(name)
-       data.append(age)
-       data.append(phone)
-       data.append(weight)
-       data.append(email)
-       data.append(status)
-       data.append(str(today))
-       data.append(pred)
-       f=True
-       for i in data:
-              print(i)
-              if len(i) ==0:
-                     f = False
-       if f:
-              print(data)
-              database = Database()
-              database.insertPatient(data)
-              Table_info()
-              hide_show()
-              print('Done')
 
-       else:
-              print("Enter all data")
-        
+def InsertPatient():
+        # Get the current date
+        today = date.today()
+        data = []
+        name = ui.newNameText.text()
+        age = ui.newAgeText.text()
+        phone = ui.newPhoneText.text()
+        weight = ui.newWeightText.text()
+        email = ui.newEmailTex.text()
+        status = ui.newStatusText.text()
+        pred = ui.newPredText.text()
+        data.append(name)
+        data.append(age)
+        data.append(phone)
+        data.append(weight)
+        data.append(email)
+        data.append(status)
+        data.append(str(today))
+        data.append(pred)
+        f = True
+        for i in data:
+                print(i)
+                if len(i) == 0:
+                        f = False
+        if f:
+                print(data)
+                database = Database()
+                database.insertPatient(data)
+                Table_info()
+                hide_show()
+                print('Done')
+
+        else:
+                print("Enter all data")
+
+
 def DeletePatient():
-       database = Database()
-       if UserID > -1:
-              database.deletePatient(UserID)
-              Table_info()
-              ui.NameText.setText('')
-              ui.AgeText.setText('')
-              ui.PhoneText.setText('')
-              ui.WeightText.setText('')
-              ui.EmailText.setText('')
-              ui.StatusText.setText('')
-              ui.PredictionText.setText('')
+        database = Database()
+        if UserID > -1:
+                database.deletePatient(UserID)
+                Table_info()
+                ui.NameText.setText('')
+                ui.AgeText.setText('')
+                ui.PhoneText.setText('')
+                ui.WeightText.setText('')
+                ui.EmailText.setText('')
+                ui.StatusText.setText('')
+                ui.PredictionText.setText('')
+
+
+def Browsee():
+        fname = QFileDialog.getOpenFileName(self, 'open file', 'C:', "CSV files (*.csv)")
+        self.filename.setText(fname[0])
+        path = fname[0]
+
 
 ui.tableWidget.doubleClicked.connect(doublclick)
-#ui.LogOut.clicked.connect(gotologin)
+# ui.LogOut.clicked.connect(gotologin)
 ui.ShowtBar.clicked.connect(hide_show)
 ui.AddNew.clicked.connect(InsertPatient)
 ui.deletepatient.clicked.connect(DeletePatient)
+ui.Browse.clicked.connect(Browsee)
 # ----------------Main------
 Table_info()
 hide_show()

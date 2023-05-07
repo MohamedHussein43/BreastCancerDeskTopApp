@@ -660,7 +660,7 @@ QPushButton#ShowtBar:hover{
      <x>1490</x>
      <y>90</y>
      <width>381</width>
-     <height>661</height>
+     <height>691</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -933,8 +933,8 @@ font: 23pt &quot;Calibri&quot;;</string>
   <widget class="QPushButton" name="AddNew">
    <property name="geometry">
     <rect>
-     <x>1630</x>
-     <y>690</y>
+     <x>1510</x>
+     <y>680</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -957,6 +957,54 @@ QPushButton#AddNew:hover{
    </property>
    <property name="text">
     <string>Add Patient</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Browse">
+   <property name="geometry">
+    <rect>
+     <x>1510</x>
+     <y>730</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#Browse{
+	Background-color:rgba(85,98,112,255);
+	color:rgba(255,255,255,200);
+	border-radius:5px;
+} 
+QPushButton#Browse:pressed{
+	padding-left:5px;
+	padding-top:5px;
+	background-color:rgba(254, 81, 171, 0.8);
+	background-position:calc(100% - 10px)center;
+}
+QPushButton#Browse:hover{
+	background-color:rgba(254, 81, 171, 0.8)
+}</string>
+   </property>
+   <property name="text">
+    <string>Upload</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="filename">
+   <property name="geometry">
+    <rect>
+     <x>1640</x>
+     <y>720</y>
+     <width>201</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 85), stop:1 rgba(255, 255, 255, 255));
+border-radius:20px;
+color:rgb(255,255,255);
+font: 18pt bold&quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>
