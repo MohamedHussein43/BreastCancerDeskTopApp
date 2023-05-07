@@ -24,7 +24,7 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QWidget#bgwidget{
-background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379, y2:0.977, stop:0 rgba(209, 107, 165, 255), stop:1 rgba(255, 255, 255, 255));}</string>
+background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379, y2:0.977, stop:0 rgba(209, 107, 165, 255), stop:1 rgba(255, 255, 255, 255));</string>
    </property>
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -69,7 +69,6 @@ color:rgb(255, 255, 255);</string>
      <string>Register a new account</string>
     </property>
    </widget>
-
    <widget class="QLineEdit" name="emailfield">
     <property name="geometry">
      <rect>
@@ -97,7 +96,6 @@ padding-bottom:7px;</string>
      <string>UserName</string>
     </property>
    </widget>
-   
    <widget class="QLineEdit" name="passwordfield">
     <property name="geometry">
      <rect>
@@ -205,7 +203,7 @@ padding-bottom:7px;</string>
 	Background-color:rgba(85,98,112,255);
 	color:rgba(255,255,255,200);
 	border-radius:5px;
-} 
+}
 QPushButton#signup:pressed{
 	padding-left:5px;
 	padding-top:5px;

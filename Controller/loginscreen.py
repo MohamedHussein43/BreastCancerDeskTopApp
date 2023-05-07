@@ -58,8 +58,7 @@ class LoginScreen(QDialog):
 if __name__ == "__main__":
         app = QtWidgets.QApplication(sys.argv)
         Form = QtWidgets.QWidget()
+        ui = LoginScreen(app, Form)
 
-        ui = Ui_Form()
-        ui.setupUi(Form)
         Form.show()
         sys.exit(app.exec_())
