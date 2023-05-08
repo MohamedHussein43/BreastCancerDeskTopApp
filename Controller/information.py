@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QTableWidget,QVBoxLayout,QHBoxLayout,QGroupBox,QTableWidgetItem,QPushButton,QLineEdit
 import sys
+from welcomescreen import WelcomeScreen
 #from login2 import Ui_Dialog
 
 sys.path.insert(1,'..//Model')
@@ -565,18 +566,31 @@ def gitDataFromTable(rowNum):
                         return Table_information[i]
 
 
-'''# login methode -----------
+# login methode -----------
 from createaccscreen import *
 from loginscreen import *
 from login2 import *
 
 
 def gotologin():
-        log = QtWidgets.QWidget()
+        app = QApplication(sys.argv)
+        print("Go to welcome screen function")
+        widget = QtWidgets.QStackedWidget()
+        layout = QVBoxLayout()
+        welcome = WelcomeScreen(app,widget)
+        layout.addWidget(welcome)
+        widget.addWidget(welcome)
+        widget.showMaximized()
+        print("Hide the info window")
+        win.hide()
+       
+        
+        #sys.exit(app.exec_())
+        """log = QtWidgets.QWidget()
         ui = LoginScreen()
         ui.setupUi(log)
-        log.show()
-'''
+        log.show()"""
+
 
 # keep track if hidden or not variable
 hidden = False
@@ -586,20 +600,34 @@ def hide_show():
         global hidden
         if hidden:
                 ui.addtable.show()
+
                 ui.newName.show()
                 ui.newNameText.show()
+                ui.newNameText.setText('Olivia')
+
                 ui.newAge.show()
                 ui.newAgeText.show()
+                ui.newAgeText.setText('43')
+
                 ui.newPhone.show()
                 ui.newPhoneText.show()
+                ui.newPhoneText.setText('6541531')
+
                 ui.newWeight.show()
                 ui.newWeightText.show()
+                ui.newWeightText.setText('65')
+
                 ui.newEmail.show()
                 ui.newEmailTex.show()
+                ui.newEmailTex.setText('aslmd@Qgmail.com')
+
                 ui.newStatus.show()
                 ui.newStatusText.show()
+                ui.newStatusText.setText('married')
+
                 ui.newPred.show()
                 ui.newPredText.show()
+
                 ui.Browse.show()
                 ui.filename.show()
                 ui.AddNew.show()
@@ -672,9 +700,21 @@ def InsertPatient():
                 print(data)
                 database = Database()
                 database.insertPatient(data)
+                Table_information = database.getPatients()
+                global medicaldata
+                print("------------medicaldata--------")
+                print(medicaldata)
+                print(type(medicaldata))
+                print("------------medicaldata--------")
+                (medicaldata.insert(0, int(Table_information[-1]['id'])))
+                database.setMedicalData(medicaldata)
                 Table_info()
                 hide_show()
                 print('Done')
+                print("------------medicaldata--------")
+                print(medicaldata)
+                print(type(medicaldata))
+                print("------------medicaldata--------")
 
         else:
                 print("Enter all data")
@@ -693,15 +733,19 @@ def DeletePatient():
                 ui.StatusText.setText('')
                 ui.PredictionText.setText('')
 
-
+from dataenterscreen import *
+medicaldata = []
 def Browsee():
-        fname = QFileDialog.getOpenFileName(self, 'open file', 'C:', "CSV files (*.csv)")
-        self.filename.setText(fname[0])
-        path = fname[0]
+        d = dataenterScreen()
+        result, allData= d.Browsee()
+        global medicaldata
+        medicaldata = list(allData[0])
+        print (allData)
+        ui.newPredText.setText(str("{:.2f}".format(float(result)*100)))
 
-
+#--------------------------------clicke events functions-----------------------------------------
 ui.tableWidget.doubleClicked.connect(doublclick)
-# ui.LogOut.clicked.connect(gotologin)
+ui.LogOut.clicked.connect(gotologin)
 ui.ShowtBar.clicked.connect(hide_show)
 ui.AddNew.clicked.connect(InsertPatient)
 ui.deletepatient.clicked.connect(DeletePatient)

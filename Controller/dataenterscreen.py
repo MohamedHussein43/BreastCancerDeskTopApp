@@ -80,27 +80,25 @@ class dataenterScreen(QDialog):
         RandomForstResult = self.RandomForestModel(x_test) 
         Hybird = LogisticResult*0.5004774 + RandomForstResult*0.4995226
 
-        print(((Hybird)> 0.5).astype(int))
+        print(float(Hybird))
+        return Hybird
 
     def Browsee(self):
         fname = QFileDialog.getOpenFileName(self, 'open file','C:', "CSV files (*.csv)")
         self.filename.setText(fname[0])
         path = fname[0]
         df = pd.read_csv(path)
-        x = df.drop('isMalignant',axis = 1).values
+        first80 = pd.read_csv('first80.csv')
+        x_train = first80.drop('isMalignant',axis = 1).values
+        y_test = first80['isMalignant'].values
+        x_test = df.drop('isMalignant',axis = 1).values
         #X = cancerSet[['RandomForest','LogisticRegression']]
-        y = df['isMalignant'].values
+        y_test = df['isMalignant'].values
 
         #test with first 50% of dataset
-        n_samples = x.shape[0]
-        n_train = int(n_samples*0.8)
-
-        x_test, y_test= x[n_train:], y[n_train:]
-        x_train, y_train= x[:n_train], y[:n_train]
-
         #Scale data
         scaler = StandardScaler()
         x_train = scaler.fit_transform(x_train)
         x_test = scaler.transform(x_test)
 
-        self.Hybrid(x_test)
+        return self.Hybrid(self.prepare(x_test)), x_test
