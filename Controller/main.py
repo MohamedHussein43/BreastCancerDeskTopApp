@@ -41,5 +41,5 @@ widget.setWindowFlags(Qt.WindowMinMaxButtonsHint |Qt.WindowCloseButtonHint )
 
 
 widget.sizeHint()
-widget.show()
+widget.showFullScreen()
 sys.exit(app.exec_())
