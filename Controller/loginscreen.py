@@ -58,7 +58,7 @@ class LoginScreen(QDialog):
                         self.error.setText("Invalid username or password")
             except Exception as e:
                 self.error.setText("Invalid username or password")
-                print("Login Exceotion: ",e)
+                print("Login Exceotion:",e)
 if __name__ == "__main__":
         app = QtWidgets.QApplication(sys.argv)
         Form = QtWidgets.QWidget()

@@ -5,6 +5,8 @@ from PyQt5.QtWidgets import QDialog, QApplication, QWidget,QFileDialog,QVBoxLayo
 from PyQt5.uic import loadUi
 sys.path.insert(1,'..//Model')
 from CreatPatientDatabase import *
+from datetime import date
+
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -475,12 +477,95 @@ class Information(QDialog):
         super(Information, self).__init__()
         
         self.ui = Ui_Dialog()
-        self.ui.setupUi(widget)
-        self.Table_info()
+        self.ui.setupUi(self.widget)
+        
         loadUi("../View/information.ui", self)
+        self.Table_info()
+        self.hidden = False
+        self.hide_show()
+        self.UserID = -1
+        self.tableWidget.doubleClicked.connect(self.doublclick)
+        self.LogOut.clicked.connect(self.gotologin)
+        self.ShowtBar.clicked.connect(self.hide_show)
+        self.AddNew.clicked.connect(self.InsertPatient)
+        self.deletepatient.clicked.connect(self.DeletePatient)
+        self.Browse.clicked.connect(self.Browsee)
+    
+
     
 
 
+    def hide_show(self):
+            print("hello from")
+            if self.hidden:
+                self.addtable.show()
+
+                self.newName.show()
+                self.newNameText.show()
+                self.newNameText.setText('Olivia')
+
+                self.newAge.show()
+                self.newAgeText.show()
+                self.newAgeText.setText('43')
+
+                self.newPhone.show()
+                self.newPhoneText.show()
+                self.newPhoneText.setText('6541531')
+
+                self.newWeight.show()
+                self.newWeightText.show()
+                self.newWeightText.setText('65')
+
+                self.newEmail.show()
+                self.newEmailTex.show()
+                self.newEmailTex.setText('aslmd@Qgmail.com')
+
+                self.newStatus.show()
+                self.newStatusText.show()
+                self.newStatusText.setText('married')
+
+                self.newPred.show()
+                self.newPredText.show()
+
+                self.Browse.show()
+                self.filename.show()
+                self.AddNew.show()
+
+
+                self.hidden = False
+            else:
+                self.addtable.hide()
+                self.newName.hide()
+                self.newNameText.hide()
+                self.newNameText.setText('')
+
+                self.newAge.hide()
+                self.newAgeText.hide()
+                self.newAgeText.setText('')
+
+                self.newPhone.hide()
+                self.newPhoneText.hide()
+                self.newPhoneText.setText('')
+
+                self.newWeight.hide()
+                self.newWeightText.hide()
+                self.newWeightText.setText('')
+
+                self.newEmail.hide()
+                self.newEmailTex.hide()
+                self.newEmailTex.setText('')
+
+                self.newStatus.hide()
+                self.newStatusText.hide()
+                self.newStatusText.setText('')
+
+                self.newPred.hide()
+                self.newPredText.hide()
+                self.newPredText.setText('')
+                self.Browse.hide()
+                self.filename.hide()
+                self.AddNew.hide()
+                self.hidden = True
     def Table_info(self):
             print("Table function 1")
             column = 4
@@ -497,13 +582,13 @@ class Information(QDialog):
                 {'Id': '3', 'Name': 'dd', 'BLABLA': 'aa'},
                 {'Id': '4', 'Name': 'fff', 'BLABLA': 'ww'},]'''
 
-            tb_row = self.ui.tableWidget.setRowCount(len(Table_information))
+            tb_row = self.tableWidget.setRowCount(len(Table_information))
             vbox.addWidget(tb_row)
-            tb_col = self.ui.tableWidget.setColumnCount(column)
+            tb_col = self.tableWidget.setColumnCount(column)
             vbox.addWidget(tb_col)
-            self.ui.tableWidget.setHorizontalHeaderLabels(('Id', 'Name', 'Phone', 'Cancer Level'))
-            self.ui.tableWidget.setFixedSize(800, 300)
-            id_width = self.ui.tableWidget.setColumnWidth(0, 50)  # set the id column width
+            self.tableWidget.setHorizontalHeaderLabels(('Id', 'Name', 'Phone', 'Cancer Level'))
+            self.tableWidget.setFixedSize(800, 300)
+            id_width = self.tableWidget.setColumnWidth(0, 50)  # set the id column width
             vbox.addWidget(id_width)
             print("Table function 4")
 
@@ -512,32 +597,32 @@ class Information(QDialog):
             index = 0  # the number of the keys in the dictionary from data base
             Cancer_Level = [0, 0, 0]
             for i in range(column):
-                    self.ui.tableWidget.setColumnWidth(i, 195)
+                    self.tableWidget.setColumnWidth(i, 195)
 
             for info in Table_information:
 
-                    self.ui.tableWidget.setItem(index, 0, QTableWidgetItem(str(info['id'])))
-                    self.ui.tableWidget.setItem(index, 1, QTableWidgetItem(str(info['name'])))
-                    self.ui.tableWidget.setItem(index, 2, QTableWidgetItem(str(info['phone'])))
+                    self.tableWidget.setItem(index, 0, QTableWidgetItem(str(info['id'])))
+                    self.tableWidget.setItem(index, 1, QTableWidgetItem(str(info['name'])))
+                    self.tableWidget.setItem(index, 2, QTableWidgetItem(str(info['phone'])))
 
                     if info['Prediction'] <= 0.3:
-                            self.ui.tableWidget.setItem(index, 3, QTableWidgetItem(str('Low')))
+                            self.tableWidget.setItem(index, 3, QTableWidgetItem(str('Low')))
                             Cancer_Level[0] += 1
 
                     elif info['Prediction'] >= 0.7:
-                            self.ui.tableWidget.setItem(index, 3, QTableWidgetItem(str('High')))
+                            self.tableWidget.setItem(index, 3, QTableWidgetItem(str('High')))
                             Cancer_Level[2] += 1
                     else:
-                            self.ui.tableWidget.setItem(index, 3, QTableWidgetItem(str('Middle')))
+                            self.tableWidget.setItem(index, 3, QTableWidgetItem(str('Middle')))
                             Cancer_Level[1] += 1
                     button = QPushButton("Addpatient")
 
-                    self.ui.tableWidget.setCellWidget(index, len(Table_information), button)
+                    self.tableWidget.setCellWidget(index, len(Table_information), button)
                     index += 1
-            self.ui.LowText.setText(str(Cancer_Level[0]))
-            self.ui.MediumText.setText(str(Cancer_Level[1]))
-            self.ui.HardText.setText(str(Cancer_Level[2]))
-            self.ui.N_patients.setText(str(len(Table_information)))
+            self.LowText.setText(str(Cancer_Level[0]))
+            self.MediumText.setText(str(Cancer_Level[1]))
+            self.HardText.setText(str(Cancer_Level[2]))
+            self.N_patients.setText(str(len(Table_information)))
             print(Cancer_Level)
             print("Table function 5")
 
@@ -546,16 +631,106 @@ class Information(QDialog):
 
 
     # double click ----> change print withe the action
-    UserID = -1
-
-
     
+    def doublclick(self, item):
+        for item in self.tableWidget.selectedItems():
+                print(item.row(), item.column(), item.text())
+                data = self.gitDataFromTable(item.row())
+                self.UserID = data['id']
+                if self.UserID > -1:
+                    self.NameText.setText(str(data['name']))
+                    self.AgeText.setText(str(data['age']))
+                    self.PhoneText.setText(str(data['phone']))
+                    self.WeightText.setText(str(data['weight']))
+                    self.EmailText.setText(str(data['email']))
+                    self.StatusText.setText(str(data['status']))
+                    self.PredictionText.setText(str(data['Prediction']))
 
-
-    def gitDataFromTable(rowNum):
+    def gitDataFromTable(sefl, rowNum):
             database = Database()
             Table_information = database.getPatients()
             for i in range(rowNum + 1):
                     if i == rowNum:
                             return Table_information[i]
+    
 
+
+    def InsertPatient(self):
+        # Get the current date
+        today = date.today()
+        data = []
+        name = self.newNameText.text()
+        age = self.newAgeText.text()
+        phone = self.newPhoneText.text()
+        weight = self.newWeightText.text()
+        email = self.newEmailTex.text()
+        status = self.newStatusText.text()
+        pred = self.newPredText.text()
+        data.append(name)
+        data.append(age)
+        data.append(phone)
+        data.append(weight)
+        data.append(email)
+        data.append(status)
+        data.append(str(today))
+        data.append(pred)
+        f = True
+        for i in data:
+                print(i)
+                if len(i) == 0:
+                        f = False
+        if f:
+                print(data)
+                database = Database()
+                database.insertPatient(data)
+                Table_information = database.getPatients()
+                global medicaldata
+                print("------------medicaldata--------")
+                print(medicaldata)
+                print(type(medicaldata))
+                print("------------medicaldata--------")
+                (medicaldata.insert(0, int(Table_information[-1]['id'])))
+                database.setMedicalData(medicaldata)
+                self.Table_info()
+                self.hide_show()
+                print('Done')
+                print("------------medicaldata--------")
+                print(medicaldata)
+                print(type(medicaldata))
+                print("------------medicaldata--------")
+
+        else:
+                print("Enter all data")
+
+
+    def DeletePatient(self):
+        database = Database()
+        if self.UserID > -1:
+                database.deletePatient(self.UserID)
+                self.Table_info()
+                self.NameText.setText('')
+                self.AgeText.setText('')
+                self.PhoneText.setText('')
+                self.WeightText.setText('')
+                self.EmailText.setText('')
+                self.StatusText.setText('')
+                self.PredictionText.setText('')
+    
+    
+    medicaldata = []
+    def Browsee(self):
+        d = dataenterScreen()
+        result, allData= d.Browsee()
+        global medicaldata
+        medicaldata = list(allData[0])
+        print (allData)
+        self.newPredText.setText(str("{:.2f}".format(float(result)*100)))
+
+    def gotologin(self):
+        self.widget.setCurrentIndex(self.widget.currentIndex()-2)
+        '''login = LoginScreen(self.app, self.widget)
+        self.widget.addWidget(login)
+        size_policy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        login.setSizePolicy(size_policy)
+        self.widget.setCurrentIndex(self.widget.currentIndex()+1)'''
+        

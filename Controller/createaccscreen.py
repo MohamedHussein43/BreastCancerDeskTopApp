@@ -8,7 +8,7 @@ from PyQt5.uic import loadUi
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 
-from dataenterscreen import*
+from test import Information
 from LoginAndRegister import LoginScreen
 
 class CreateAccScreen(QDialog):
@@ -49,6 +49,6 @@ class CreateAccScreen(QDialog):
             conn.commit()
             conn.close()
 
-            dataenter = dataenterScreen()
+            dataenter = Information()
             self.widget.addWidget(dataenter)
             self.widget.setCurrentIndex(self.widget.currentIndex()+1)
