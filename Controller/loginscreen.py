@@ -8,6 +8,7 @@ import sqlite3
 from LoginAndRegister import CreateAccScreen
 import sys,loginres,signupres
 from dataenterscreen import *
+from test import Information
 class LoginScreen(QDialog):
     def __init__(self, app, widget):
         self.app = app
@@ -45,16 +46,19 @@ class LoginScreen(QDialog):
                     if result_pass == password:
                         print("Successfully logged in.")
                         self.error.setText("")
-
-                        dataenter = dataenterScreen()
-                        self.widget.addWidget(dataenter)
+                        information = Information(self.app, self.widget)
+                        self.widget.addWidget(information)
                         self.widget.setCurrentIndex(self.widget.currentIndex()+1)
+                        ''' dataenter = dataenterScreen()
+                        self.widget.addWidget(dataenter)
+                        self.widget.setCurrentIndex(self.widget.currentIndex()+1)'''
                     
 
                     else:
                         self.error.setText("Invalid username or password")
             except Exception as e:
                 self.error.setText("Invalid username or password")
+                print("Login Exceotion: ",e)
 if __name__ == "__main__":
         app = QtWidgets.QApplication(sys.argv)
         Form = QtWidgets.QWidget()
