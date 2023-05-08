@@ -466,299 +466,292 @@ class Ui_Dialog(object):
         self.AddNew.setText(_translate("Dialog", "Add Patient"))
         self.Browse.setText(_translate("Dialog", "Upload"))
 
-    def main(self):
-        app = QtWidgets.QApplication(sys.argv)
-        win = QtWidgets.QWidget()
-        ui = Ui_Dialog()
-        ui.setupUi(win)
-        # -----------Table--------------
-        column = 4
-
-
-        def Table_info():
-                vbox = QVBoxLayout()
-                database = Database()
-                Table_information = database.getPatients()
-                print("-----------------------------------------------------------")
-                print(Table_information)
-                print("-----------------------------------------------------------")
-                '''[{'Id':'1', 'Name':'mmm' ,'BLABLA':'sss'},
-                {'Id': '2', 'Name': 'ss', 'BLABLA': 'sss'},
-                {'Id': '3', 'Name': 'dd', 'BLABLA': 'aa'},
-                {'Id': '4', 'Name': 'fff', 'BLABLA': 'ww'},]'''
-
-                tb_row = ui.tableWidget.setRowCount(len(Table_information))
-                vbox.addWidget(tb_row)
-                tb_col = ui.tableWidget.setColumnCount(column)
-                vbox.addWidget(tb_col)
-                ui.tableWidget.setHorizontalHeaderLabels(('Id', 'Name', 'Phone', 'Cancer Level'))
-                ui.tableWidget.setFixedSize(800, 300)
-                id_width = ui.tableWidget.setColumnWidth(0, 50)  # set the id column width
-                vbox.addWidget(id_width)
-
-                # fill the data
-                # ya zhz you can use a list of the dictionaray to retriev the data from the data base
-                index = 0  # the number of the keys in the dictionary from data base
-                Cancer_Level = [0, 0, 0]
-                for i in range(column):
-                        ui.tableWidget.setColumnWidth(i, 195)
-
-                for info in Table_information:
-
-                        ui.tableWidget.setItem(index, 0, QTableWidgetItem(str(info['id'])))
-                        ui.tableWidget.setItem(index, 1, QTableWidgetItem(str(info['name'])))
-                        ui.tableWidget.setItem(index, 2, QTableWidgetItem(str(info['phone'])))
-
-                        if info['Prediction'] <= 0.3:
-                                ui.tableWidget.setItem(index, 3, QTableWidgetItem(str('Low')))
-                                Cancer_Level[0] += 1
-
-                        elif info['Prediction'] >= 0.7:
-                                ui.tableWidget.setItem(index, 3, QTableWidgetItem(str('High')))
-                                Cancer_Level[2] += 1
-                        else:
-                                ui.tableWidget.setItem(index, 3, QTableWidgetItem(str('Middle')))
-                                Cancer_Level[1] += 1
-                        button = QPushButton("Addpatient")
-
-                        ui.tableWidget.setCellWidget(index, len(Table_information), button)
-                        index += 1
-                ui.LowText.setText(str(Cancer_Level[0]))
-                ui.MediumText.setText(str(Cancer_Level[1]))
-                ui.HardText.setText(str(Cancer_Level[2]))
-                ui.N_patients.setText(str(len(Table_information)))
-                print(Cancer_Level)
-
-                win.setLayout(vbox)
-
-
-        # double click ----> change print withe the action
-        UserID = -1
-
-
-        def doublclick(item):
-                for item in ui.tableWidget.selectedItems():
-                        print(item.row(), item.column(), item.text())
-                        data = gitDataFromTable(item.row())
-                        global UserID
-                        UserID = data['id']
-                        ui.NameText.setText(str(data['name']))
-                        ui.AgeText.setText(str(data['age']))
-                        ui.PhoneText.setText(str(data['phone']))
-                        ui.WeightText.setText(str(data['weight']))
-                        ui.EmailText.setText(str(data['email']))
-                        ui.StatusText.setText(str(data['status']))
-                        ui.PredictionText.setText(str(data['Prediction']))
-
-
-        def gitDataFromTable(rowNum):
-                database = Database()
-                Table_information = database.getPatients()
-                for i in range(rowNum + 1):
-                        if i == rowNum:
-                                return Table_information[i]
-
-
-        # login methode -----------
-
-
-
-        def gotologin():
-                app = QApplication(sys.argv)
-                print("Go to welcome screen function")
-                widget = QtWidgets.QStackedWidget()
-                layout = QVBoxLayout()
-                welcome = WelcomeScreen(app,widget)
-                layout.addWidget(welcome)
-                widget.addWidget(welcome)
-                widget.showMaximized()
-                print("Hide the info window")
-                win.hide()
-        
-                
-                #sys.exit(app.exec_())
-                """log = QtWidgets.QWidget()
-                ui = LoginScreen()
-                ui.setupUi(log)
-                log.show()"""
-
-
-        # keep track if hidden or not variable
-        hidden = False
-
-
-        def hide_show():
-                global hidden
-                if hidden:
-                        ui.addtable.show()
-
-                        ui.newName.show()
-                        ui.newNameText.show()
-                        ui.newNameText.setText('Olivia')
-
-                        ui.newAge.show()
-                        ui.newAgeText.show()
-                        ui.newAgeText.setText('43')
-
-                        ui.newPhone.show()
-                        ui.newPhoneText.show()
-                        ui.newPhoneText.setText('6541531')
-
-                        ui.newWeight.show()
-                        ui.newWeightText.show()
-                        ui.newWeightText.setText('65')
-
-                        ui.newEmail.show()
-                        ui.newEmailTex.show()
-                        ui.newEmailTex.setText('aslmd@Qgmail.com')
-
-                        ui.newStatus.show()
-                        ui.newStatusText.show()
-                        ui.newStatusText.setText('married')
-
-                        ui.newPred.show()
-                        ui.newPredText.show()
-
-                        ui.Browse.show()
-                        ui.filename.show()
-                        ui.AddNew.show()
-
-
-                        hidden = False
-                else:
-                        ui.addtable.hide()
-                        ui.newName.hide()
-                        ui.newNameText.hide()
-                        ui.newNameText.setText('')
-
-                        ui.newAge.hide()
-                        ui.newAgeText.hide()
-                        ui.newAgeText.setText('')
-
-                        ui.newPhone.hide()
-                        ui.newPhoneText.hide()
-                        ui.newPhoneText.setText('')
-
-                        ui.newWeight.hide()
-                        ui.newWeightText.hide()
-                        ui.newWeightText.setText('')
-
-                        ui.newEmail.hide()
-                        ui.newEmailTex.hide()
-                        ui.newEmailTex.setText('')
-
-                        ui.newStatus.hide()
-                        ui.newStatusText.hide()
-                        ui.newStatusText.setText('')
-
-                        ui.newPred.hide()
-                        ui.newPredText.hide()
-                        ui.newPredText.setText('')
-                        ui.Browse.hide()
-                        ui.filename.hide()
-                        ui.AddNew.hide()
-                        hidden = True
-
-
-        from datetime import date
-
-
-        def InsertPatient():
-                # Get the current date
-                today = date.today()
-                data = []
-                name = ui.newNameText.text()
-                age = ui.newAgeText.text()
-                phone = ui.newPhoneText.text()
-                weight = ui.newWeightText.text()
-                email = ui.newEmailTex.text()
-                status = ui.newStatusText.text()
-                pred = ui.newPredText.text()
-                data.append(name)
-                data.append(age)
-                data.append(phone)
-                data.append(weight)
-                data.append(email)
-                data.append(status)
-                data.append(str(today))
-                data.append(pred)
-                f = True
-                for i in data:
-                        print(i)
-                        if len(i) == 0:
-                                f = False
-                if f:
-                        print(data)
-                        database = Database()
-                        database.insertPatient(data)
-                        Table_information = database.getPatients()
-                        global medicaldata
-                        print("------------medicaldata--------")
-                        print(medicaldata)
-                        print(type(medicaldata))
-                        print("------------medicaldata--------")
-                        (medicaldata.insert(0, int(Table_information[-1]['id'])))
-                        database.setMedicalData(medicaldata)
-                        Table_info()
-                        hide_show()
-                        print('Done')
-                        print("------------medicaldata--------")
-                        print(medicaldata)
-                        print(type(medicaldata))
-                        print("------------medicaldata--------")
-
-                else:
-                        print("Enter all data")
-
-
-        def DeletePatient():
-                database = Database()
-                if UserID > -1:
-                        database.deletePatient(UserID)
-                        Table_info()
-                        ui.NameText.setText('')
-                        ui.AgeText.setText('')
-                        ui.PhoneText.setText('')
-                        ui.WeightText.setText('')
-                        ui.EmailText.setText('')
-                        ui.StatusText.setText('')
-                        ui.PredictionText.setText('')
-
-        
-        medicaldata = []
-        def Browsee():
-                d = dataenterScreen()
-                result, allData= d.Browsee()
-                global medicaldata
-                medicaldata = list(allData[0])
-                print (allData)
-                ui.newPredText.setText(str("{:.2f}".format(float(result)*100)))
-
-        #--------------------------------clicke events functions-----------------------------------------
-        ui.tableWidget.doubleClicked.connect(doublclick)
-        ui.LogOut.clicked.connect(gotologin)
-        ui.ShowtBar.clicked.connect(hide_show)
-        ui.AddNew.clicked.connect(InsertPatient)
-        ui.deletepatient.clicked.connect(DeletePatient)
-        ui.Browse.clicked.connect(Browsee)
-        # ----------------Main------
-        Table_info()
-        hide_show()
-        win.show()
-        sys.exit(app.exec_())
-
     # the method of load products
     '''def loadProducts(self):
         self.ui.tableWidget.setRowCount(row)
         self.ui.tableWidget.setColumnCount(column)'''
 
 
-
-
 '''------------------------------------main------------------------------------------'''
+
+app = QtWidgets.QApplication(sys.argv)
+win = QtWidgets.QWidget()
+ui = Ui_Dialog()
+ui.setupUi(win)
+# -----------Table--------------
+column = 4
+
+
+def Table_info():
+        vbox = QVBoxLayout()
+        database = Database()
+        Table_information = database.getPatients()
+        print("-----------------------------------------------------------")
+        print(Table_information)
+        print("-----------------------------------------------------------")
+        '''[{'Id':'1', 'Name':'mmm' ,'BLABLA':'sss'},
+            {'Id': '2', 'Name': 'ss', 'BLABLA': 'sss'},
+             {'Id': '3', 'Name': 'dd', 'BLABLA': 'aa'},
+            {'Id': '4', 'Name': 'fff', 'BLABLA': 'ww'},]'''
+
+        tb_row = ui.tableWidget.setRowCount(len(Table_information))
+        vbox.addWidget(tb_row)
+        tb_col = ui.tableWidget.setColumnCount(column)
+        vbox.addWidget(tb_col)
+        ui.tableWidget.setHorizontalHeaderLabels(('Id', 'Name', 'Phone', 'Cancer Level'))
+        ui.tableWidget.setFixedSize(800, 300)
+        id_width = ui.tableWidget.setColumnWidth(0, 50)  # set the id column width
+        vbox.addWidget(id_width)
+
+        # fill the data
+        # ya zhz you can use a list of the dictionaray to retriev the data from the data base
+        index = 0  # the number of the keys in the dictionary from data base
+        Cancer_Level = [0, 0, 0]
+        for i in range(column):
+                ui.tableWidget.setColumnWidth(i, 195)
+
+        for info in Table_information:
+
+                ui.tableWidget.setItem(index, 0, QTableWidgetItem(str(info['id'])))
+                ui.tableWidget.setItem(index, 1, QTableWidgetItem(str(info['name'])))
+                ui.tableWidget.setItem(index, 2, QTableWidgetItem(str(info['phone'])))
+
+                if info['Prediction'] <= 0.3:
+                        ui.tableWidget.setItem(index, 3, QTableWidgetItem(str('Low')))
+                        Cancer_Level[0] += 1
+
+                elif info['Prediction'] >= 0.7:
+                        ui.tableWidget.setItem(index, 3, QTableWidgetItem(str('High')))
+                        Cancer_Level[2] += 1
+                else:
+                        ui.tableWidget.setItem(index, 3, QTableWidgetItem(str('Middle')))
+                        Cancer_Level[1] += 1
+                button = QPushButton("Addpatient")
+
+                ui.tableWidget.setCellWidget(index, len(Table_information), button)
+                index += 1
+        ui.LowText.setText(str(Cancer_Level[0]))
+        ui.MediumText.setText(str(Cancer_Level[1]))
+        ui.HardText.setText(str(Cancer_Level[2]))
+        ui.N_patients.setText(str(len(Table_information)))
+        print(Cancer_Level)
+
+        win.setLayout(vbox)
+
+
+# double click ----> change print withe the action
+UserID = -1
+
+
+def doublclick(item):
+        for item in ui.tableWidget.selectedItems():
+                print(item.row(), item.column(), item.text())
+                data = gitDataFromTable(item.row())
+                global UserID
+                UserID = data['id']
+                ui.NameText.setText(str(data['name']))
+                ui.AgeText.setText(str(data['age']))
+                ui.PhoneText.setText(str(data['phone']))
+                ui.WeightText.setText(str(data['weight']))
+                ui.EmailText.setText(str(data['email']))
+                ui.StatusText.setText(str(data['status']))
+                ui.PredictionText.setText(str(data['Prediction']))
+
+
+def gitDataFromTable(rowNum):
+        database = Database()
+        Table_information = database.getPatients()
+        for i in range(rowNum + 1):
+                if i == rowNum:
+                        return Table_information[i]
+
+
+# login methode -----------
 from createaccscreen import *
 from loginscreen import *
 from login2 import *
-from dataenterscreen import *
 
-main()
+
+def gotologin():
+        app = QApplication(sys.argv)
+        print("Go to welcome screen function")
+        widget = QtWidgets.QStackedWidget()
+        layout = QVBoxLayout()
+        welcome = WelcomeScreen(app,widget)
+        layout.addWidget(welcome)
+        widget.addWidget(welcome)
+        widget.showMaximized()
+        print("Hide the info window")
+        win.hide()
+       
+        
+        #sys.exit(app.exec_())
+        """log = QtWidgets.QWidget()
+        ui = LoginScreen()
+        ui.setupUi(log)
+        log.show()"""
+
+
+# keep track if hidden or not variable
+hidden = False
+
+
+def hide_show():
+        global hidden
+        if hidden:
+                ui.addtable.show()
+
+                ui.newName.show()
+                ui.newNameText.show()
+                ui.newNameText.setText('Olivia')
+
+                ui.newAge.show()
+                ui.newAgeText.show()
+                ui.newAgeText.setText('43')
+
+                ui.newPhone.show()
+                ui.newPhoneText.show()
+                ui.newPhoneText.setText('6541531')
+
+                ui.newWeight.show()
+                ui.newWeightText.show()
+                ui.newWeightText.setText('65')
+
+                ui.newEmail.show()
+                ui.newEmailTex.show()
+                ui.newEmailTex.setText('aslmd@Qgmail.com')
+
+                ui.newStatus.show()
+                ui.newStatusText.show()
+                ui.newStatusText.setText('married')
+
+                ui.newPred.show()
+                ui.newPredText.show()
+
+                ui.Browse.show()
+                ui.filename.show()
+                ui.AddNew.show()
+
+
+                hidden = False
+        else:
+                ui.addtable.hide()
+                ui.newName.hide()
+                ui.newNameText.hide()
+                ui.newNameText.setText('')
+
+                ui.newAge.hide()
+                ui.newAgeText.hide()
+                ui.newAgeText.setText('')
+
+                ui.newPhone.hide()
+                ui.newPhoneText.hide()
+                ui.newPhoneText.setText('')
+
+                ui.newWeight.hide()
+                ui.newWeightText.hide()
+                ui.newWeightText.setText('')
+
+                ui.newEmail.hide()
+                ui.newEmailTex.hide()
+                ui.newEmailTex.setText('')
+
+                ui.newStatus.hide()
+                ui.newStatusText.hide()
+                ui.newStatusText.setText('')
+
+                ui.newPred.hide()
+                ui.newPredText.hide()
+                ui.newPredText.setText('')
+                ui.Browse.hide()
+                ui.filename.hide()
+                ui.AddNew.hide()
+                hidden = True
+
+
+from datetime import date
+
+
+def InsertPatient():
+        # Get the current date
+        today = date.today()
+        data = []
+        name = ui.newNameText.text()
+        age = ui.newAgeText.text()
+        phone = ui.newPhoneText.text()
+        weight = ui.newWeightText.text()
+        email = ui.newEmailTex.text()
+        status = ui.newStatusText.text()
+        pred = ui.newPredText.text()
+        data.append(name)
+        data.append(age)
+        data.append(phone)
+        data.append(weight)
+        data.append(email)
+        data.append(status)
+        data.append(str(today))
+        data.append(pred)
+        f = True
+        for i in data:
+                print(i)
+                if len(i) == 0:
+                        f = False
+        if f:
+                print(data)
+                database = Database()
+                database.insertPatient(data)
+                Table_information = database.getPatients()
+                global medicaldata
+                print("------------medicaldata--------")
+                print(medicaldata)
+                print(type(medicaldata))
+                print("------------medicaldata--------")
+                (medicaldata.insert(0, int(Table_information[-1]['id'])))
+                database.setMedicalData(medicaldata)
+                Table_info()
+                hide_show()
+                print('Done')
+                print("------------medicaldata--------")
+                print(medicaldata)
+                print(type(medicaldata))
+                print("------------medicaldata--------")
+
+        else:
+                print("Enter all data")
+
+
+def DeletePatient():
+        database = Database()
+        if UserID > -1:
+                database.deletePatient(UserID)
+                Table_info()
+                ui.NameText.setText('')
+                ui.AgeText.setText('')
+                ui.PhoneText.setText('')
+                ui.WeightText.setText('')
+                ui.EmailText.setText('')
+                ui.StatusText.setText('')
+                ui.PredictionText.setText('')
+
+from dataenterscreen import *
+medicaldata = []
+def Browsee():
+        d = dataenterScreen()
+        result, allData= d.Browsee()
+        global medicaldata
+        medicaldata = list(allData[0])
+        print (allData)
+        ui.newPredText.setText(str("{:.2f}".format(float(result)*100)))
+
+#--------------------------------clicke events functions-----------------------------------------
+ui.tableWidget.doubleClicked.connect(doublclick)
+ui.LogOut.clicked.connect(gotologin)
+ui.ShowtBar.clicked.connect(hide_show)
+ui.AddNew.clicked.connect(InsertPatient)
+ui.deletepatient.clicked.connect(DeletePatient)
+ui.Browse.clicked.connect(Browsee)
+# ----------------Main------
+Table_info()
+hide_show()
+win.show()
+sys.exit(app.exec_())
