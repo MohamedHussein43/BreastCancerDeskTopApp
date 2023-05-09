@@ -2,5 +2,8 @@
     "python.analysis.extraPaths": [
         "./Model",
         "./Model"
-    ]
+    ],
+    "python.linting.pylintEnabled": false,
+    "python.linting.enabled": false,
+    "python.linting.mypyEnabled": true
 }
