@@ -7,8 +7,6 @@ from dataenterscreen import dataenterScreen
 sys.path.insert(1,'..//Model')
 from CreatPatientDatabase import *
 from datetime import date
-from welcomscreen import gotologin
-
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -607,11 +605,11 @@ class Information(QDialog):
                     self.tableWidget.setItem(index, 1, QTableWidgetItem(str(info['name'])))
                     self.tableWidget.setItem(index, 2, QTableWidgetItem(str(info['phone'])))
 
-                    if info['Prediction'] <= 0.3:
+                    if info['Prediction'] <= 0.3*100:
                             self.tableWidget.setItem(index, 3, QTableWidgetItem(str('Low')))
                             Cancer_Level[0] += 1
 
-                    elif info['Prediction'] >= 0.7:
+                    elif info['Prediction'] >= 0.7*100:
                             self.tableWidget.setItem(index, 3, QTableWidgetItem(str('High')))
                             Cancer_Level[2] += 1
                     else:
@@ -729,7 +727,6 @@ class Information(QDialog):
         self.newPredText.setText(str("{:.2f}".format(float(result)*100)))
 
     def gotologin(self):
-<<<<<<< HEAD
         
         while self.widget.count() > 0:
                 widget = self.widget.widget(1)
@@ -738,15 +735,15 @@ class Information(QDialog):
                 self.widget.removeWidget(widget)
                 print("current index after remove: ",self.widget.currentIndex())
                 print("widget index after remove: ",self.widget.widget(0))
-                widget.deleteLater()
+                if self.widget.currentIndex() !=0:
+                      widget.deleteLater()
+                else:
+                      break
                 print("current index after delete: ",self.widget.currentIndex())
                 print("widget index after delete: ",self.widget.widget(0))
         print("After loop: ",self.widget.currentIndex())
         self.widget.setCurrentIndex(self.widget.currentIndex())
         
-=======
-        self.widget.setCurrentIndex(welcomscreen.gotologin())
->>>>>>> cdb2b182e5499fec2699375e7fe136af7037edd7
         '''login = LoginScreen(self.app, self.widget)
         self.widget.addWidget(login)
         size_policy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
