@@ -5,7 +5,7 @@ from PyQt5.uic import loadUi
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 import sqlite3
-from test import Information
+from information import Information
 class CreateAccScreen(QDialog):
     def __init__(self, app, widget):
         self.app = app

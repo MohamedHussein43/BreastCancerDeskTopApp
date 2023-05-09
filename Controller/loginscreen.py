@@ -8,7 +8,7 @@ import sqlite3
 from LoginAndRegister import CreateAccScreen
 import sys,loginres,signupres
 
-from test import Information
+from information import Information
 class LoginScreen(QDialog):
     def __init__(self, app, widget):
         self.app = app
