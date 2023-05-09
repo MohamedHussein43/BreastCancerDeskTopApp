@@ -7,6 +7,8 @@ from dataenterscreen import dataenterScreen
 sys.path.insert(1,'..//Model')
 from CreatPatientDatabase import *
 from datetime import date
+from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtGui import QIcon
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -701,7 +703,18 @@ class Information(QDialog):
 
         else:
                 print("Enter all data")
+                self.showMessage();
 
+    def showMessage(self):
+        #create instance of the messageBox Class
+        msg = QMessageBox()
+        msg.setWindowTitle("warning")
+        msg.setText("Enter all data      ")
+        msg.setIcon(QMessageBox.Warning)
+        msg.setWindowIcon(QIcon('clipboard.png'))
+
+        #show the message box
+        x = msg.exec_()
 
     def DeletePatient(self):
         database = Database()

@@ -41,6 +41,7 @@ class LoginScreen(QDialog):
                 result_user,result_pass = cur.fetchone()
                 print('3')
                 if (result_user == ''):
+                    self.move(100,50)
                     self.error.setText("Invalid username or password")
                 else :
                     print (result_user)
