@@ -709,7 +709,7 @@ class Information(QDialog):
         #create instance of the messageBox Class
         msg = QMessageBox()
         msg.setWindowTitle("warning")
-        msg.setText("Enter all data      ")
+        msg.setText("Enter all data.      ")
         msg.setIcon(QMessageBox.Warning)
         msg.setWindowIcon(QIcon('clipboard.png'))
 
