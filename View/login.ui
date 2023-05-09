@@ -86,7 +86,8 @@ border-radius:20px;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:rgb(0,0,0,200);
+     <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 0), stop:1 rgba(255, 255, 255, 255));
+color:rgb(0,0,0,200);
 font: 75 22pt bold 1px&quot;Calibri&quot;;
 </string>
     </property>

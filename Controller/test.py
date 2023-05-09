@@ -7,6 +7,7 @@ from dataenterscreen import dataenterScreen
 sys.path.insert(1,'..//Model')
 from CreatPatientDatabase import *
 from datetime import date
+from welcomscreen import gotologin
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -728,6 +729,7 @@ class Information(QDialog):
         self.newPredText.setText(str("{:.2f}".format(float(result)*100)))
 
     def gotologin(self):
+<<<<<<< HEAD
         
         while self.widget.count() > 0:
                 widget = self.widget.widget(1)
@@ -742,6 +744,9 @@ class Information(QDialog):
         print("After loop: ",self.widget.currentIndex())
         self.widget.setCurrentIndex(self.widget.currentIndex())
         
+=======
+        self.widget.setCurrentIndex(welcomscreen.gotologin())
+>>>>>>> cdb2b182e5499fec2699375e7fe136af7037edd7
         '''login = LoginScreen(self.app, self.widget)
         self.widget.addWidget(login)
         size_policy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
