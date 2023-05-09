@@ -57,7 +57,7 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">
+     <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 0), stop:1 rgba(255, 255, 255, 255));
 font: 75pt bold&quot;Calibri&quot;;
  color:rgb(255, 255, 255);</string>
     </property>
@@ -75,8 +75,8 @@ font: 75pt bold&quot;Calibri&quot;;
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 36pt &quot;Calibri&quot;;
-
+     <string notr="true">background-color:qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:1, stop:0 rgba(0, 0, 0, 0), stop:1 rgba(255, 255, 255, 255));
+font: 75 36pt &quot;Calibri&quot;;
 color:rgb(255, 255, 255)</string>
     </property>
     <property name="text">

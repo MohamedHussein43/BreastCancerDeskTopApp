@@ -1,6 +1,7 @@
 import csv
 import sys
-from PyQt5.uic import loadUi
+#sys.path.append('c:\users\moham\appdata\local\programs\python\python310\lib\site-packages')
+
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget,QFileDialog,QVBoxLayout, QTextEdit,QSizePolicy,QLayout
 from PyQt5.QtGui import QIcon

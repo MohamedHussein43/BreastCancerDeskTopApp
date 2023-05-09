@@ -6,6 +6,7 @@ from PyQt5.uic import loadUi
 sys.path.insert(1,'..//Model')
 from CreatPatientDatabase import *
 from datetime import date
+from welcomscreen import gotologin
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -727,7 +728,7 @@ class Information(QDialog):
         self.newPredText.setText(str("{:.2f}".format(float(result)*100)))
 
     def gotologin(self):
-        self.widget.setCurrentIndex(self.widget.currentIndex()-2)
+        self.widget.setCurrentIndex(welcomscreen.gotologin())
         '''login = LoginScreen(self.app, self.widget)
         self.widget.addWidget(login)
         size_policy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
