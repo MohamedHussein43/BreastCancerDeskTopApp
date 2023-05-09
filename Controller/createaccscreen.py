@@ -49,6 +49,6 @@ class CreateAccScreen(QDialog):
             conn.commit()
             conn.close()
 
-            dataenter = Information()
+            dataenter = Information(self.app, self.widget)
             self.widget.addWidget(dataenter)
             self.widget.setCurrentIndex(self.widget.currentIndex()+1)

@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QTableWidget,QVBoxLayout,QHBoxLayout,QGroupBox,QTabl
 import sys
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget,QFileDialog,QVBoxLayout, QTextEdit,QSizePolicy
 from PyQt5.uic import loadUi
+from dataenterscreen import dataenterScreen
 sys.path.insert(1,'..//Model')
 from CreatPatientDatabase import *
 from datetime import date
@@ -727,7 +728,20 @@ class Information(QDialog):
         self.newPredText.setText(str("{:.2f}".format(float(result)*100)))
 
     def gotologin(self):
-        self.widget.setCurrentIndex(self.widget.currentIndex()-2)
+        
+        while self.widget.count() > 0:
+                widget = self.widget.widget(1)
+                print("current index before remove: ",self.widget.currentIndex())
+                print("widget index before remove: ",self.widget.widget(0))
+                self.widget.removeWidget(widget)
+                print("current index after remove: ",self.widget.currentIndex())
+                print("widget index after remove: ",self.widget.widget(0))
+                widget.deleteLater()
+                print("current index after delete: ",self.widget.currentIndex())
+                print("widget index after delete: ",self.widget.widget(0))
+        print("After loop: ",self.widget.currentIndex())
+        self.widget.setCurrentIndex(self.widget.currentIndex())
+        
         '''login = LoginScreen(self.app, self.widget)
         self.widget.addWidget(login)
         size_policy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)

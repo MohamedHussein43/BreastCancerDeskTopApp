@@ -13,7 +13,9 @@ class WelcomeScreen(QDialog):
     def __init__(self, app, widget):
         self.app = app
         self.widget = widget
+        
         super(WelcomeScreen, self).__init__()
+        self.setStyleSheet("background-color: transparent;")
         loadUi("../View/welcomescreen.ui", self)
         
         self.login.clicked.connect(self.gotologin)

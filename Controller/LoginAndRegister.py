@@ -5,13 +5,13 @@ from PyQt5.uic import loadUi
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 import sqlite3
-
-from dataenterscreen import*
+from test import Information
 class CreateAccScreen(QDialog):
     def __init__(self, app, widget):
         self.app = app
         self.widget = widget
         super(CreateAccScreen, self).__init__()
+        self.setStyleSheet("background-color: transparent;")
         loadUi("../View/createacc.ui", self)
 
         self.passwordfield.setEchoMode(QtWidgets.QLineEdit.Password)
@@ -45,7 +45,7 @@ class CreateAccScreen(QDialog):
             conn.commit()
             conn.close()
 
-            dataenter = dataenterScreen()
+            dataenter = Information(self.app, self.widget)
             self.widget.addWidget(dataenter)
             self.widget.setCurrentIndex(self.widget.currentIndex()+1)
 
@@ -54,6 +54,7 @@ class LoginScreen(QDialog):
         self.app = app
         self.widget = widget
         super(LoginScreen, self).__init__()
+        self.setStyleSheet("background-color: transparent;")
         loadUi("../View/login.ui", self)
         self.passwordfield.setEchoMode(QtWidgets.QLineEdit.Password)
         self.login.clicked.connect(self.loginfunction)
@@ -87,7 +88,7 @@ class LoginScreen(QDialog):
                         print("Successfully logged in.")
                         self.error.setText("")
 
-                        dataenter = dataenterScreen()
+                        dataenter = Information(self.app, self.widget)
                         self.widget.addWidget(dataenter)
                         self.widget.setCurrentIndex(self.widget.currentIndex()+1)
                     
