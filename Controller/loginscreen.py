@@ -7,13 +7,14 @@ from PyQt5.QtCore import Qt
 import sqlite3
 from LoginAndRegister import CreateAccScreen
 import sys,loginres,signupres
-from dataenterscreen import *
-from test import Information
+
+from information import Information
 class LoginScreen(QDialog):
     def __init__(self, app, widget):
         self.app = app
         self.widget = widget
         super(LoginScreen, self).__init__()
+        self.setStyleSheet("background-color: transparent;")
         loadUi("../View/login.ui", self)
         self.passwordfield.setEchoMode(QtWidgets.QLineEdit.Password)
         self.login.clicked.connect(self.loginfunction)
