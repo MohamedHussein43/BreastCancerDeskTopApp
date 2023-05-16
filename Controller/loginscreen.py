@@ -34,7 +34,7 @@ class LoginScreen(QDialog):
 
         else:
             try:
-                conn = sqlite3.connect("../Model/users.db")
+                conn = sqlite3.connect("../Database/users.db")
                 cur = conn.cursor()
                 query = 'SELECT * FROM login_info WHERE username =\''+user+"\'"
                 cur.execute(query)

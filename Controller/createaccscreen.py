@@ -39,7 +39,7 @@ class CreateAccScreen(QDialog):
         elif password != confirmpassword:
             self.error.setText("Passwords do not match.")
         else:
-            conn = sqlite3.connect("../Model/users.db")
+            conn = sqlite3.connect("../Database/users.db")
             cur = conn.cursor()
 
             user_info = [user, password]

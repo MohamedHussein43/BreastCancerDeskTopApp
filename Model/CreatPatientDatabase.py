@@ -143,7 +143,7 @@ class Database():
         """ create a database connection to a SQLite database """
         conn = None
         try:
-            conn = sqlite3.connect('../Model/Patient.db')
+            conn = sqlite3.connect('../Database/Patient.db')
             print(f'Successful connection to SQLite database version {sqlite3.version}')
             return conn
         except Error as e:
