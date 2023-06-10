@@ -78,7 +78,7 @@ class dataenterScreen(QDialog):
     def Hybrid(self, x_test):
         LogisticResult = self.LogisticModel(x_test) 
         RandomForstResult = self.RandomForestModel(x_test) 
-        Hybird = LogisticResult*0.5004774 + RandomForstResult*0.4995226
+        Hybird = LogisticResult*0.5194829163932521 + RandomForstResult*0.480517083606748
 
         print(float(Hybird))
         return Hybird
