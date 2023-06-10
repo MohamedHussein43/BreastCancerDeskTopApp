@@ -74,7 +74,7 @@ class LoginScreen(QDialog):
 
         else:
             try:
-                conn = sqlite3.connect("../Model/users.db")
+                conn = sqlite3.connect("../Database/users.db")
                 cur = conn.cursor()
                 query = 'SELECT * FROM login_info WHERE username =\''+user+"\'"
                 cur.execute(query)
@@ -88,13 +88,16 @@ class LoginScreen(QDialog):
                     if result_pass == password:
                         print("Successfully logged in.")
                         self.error.setText("")
-
-                        dataenter = Information(self.app, self.widget)
-                        self.widget.addWidget(dataenter)
+                        information = Information(self.app, self.widget)
+                        self.widget.addWidget(information)
                         self.widget.setCurrentIndex(self.widget.currentIndex()+1)
+                        ''' dataenter = dataenterScreen()
+                        self.widget.addWidget(dataenter)
+                        self.widget.setCurrentIndex(self.widget.currentIndex()+1)'''
                     
 
                     else:
                         self.error.setText("Invalid username or password")
             except Exception as e:
                 self.error.setText("Invalid username or password")
+                print("Login Exceotion:",e)

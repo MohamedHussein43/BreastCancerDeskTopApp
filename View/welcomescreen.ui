@@ -10,9 +10,11 @@
     <height>1077</height>
    </rect>
   </property>
+
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+
   <widget class="QWidget" name="bgwidget" native="true">
    <property name="geometry">
     <rect>
@@ -38,6 +40,7 @@
     <string notr="true">QWidget#bgwidget{
 background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379, y2:0.977, stop:0 rgba(209, 107, 165, 255), stop:1 rgba(255, 255, 255, 255));}</string>
    </property>
+
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
@@ -83,6 +86,7 @@ color:rgb(255, 255, 255)</string>
      <string>Sign in or create a new account</string>
     </property>
    </widget>
+
    <widget class="QPushButton" name="login">
     <property name="geometry">
      <rect>
@@ -119,6 +123,7 @@ QPushButton#login:hover{
      <string>Log in</string>
     </property>
    </widget>
+   
    <widget class="QPushButton" name="create">
     <property name="geometry">
      <rect>
