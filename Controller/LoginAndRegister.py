@@ -35,19 +35,34 @@ class CreateAccScreen(QDialog):
         elif password != confirmpassword:
             self.error.setText("Passwords do not match.")
         else:
-            conn = sqlite3.connect("../Model/users.db")
+            conn = sqlite3.connect("../Database/users.db")
             cur = conn.cursor()
+            query = "SELECT username FROM login_info"
+            cur.execute(query)
+            result_user = cur.fetchall()
+            print('===========================')
+            print('========= Users ===========')
+            print(result_user)
+            print('===========================')
 
-            user_info = [user, password]
-            cur.execute(
-                'INSERT INTO login_info (username, password) VALUES (?,?)', user_info)
+            
+            flag = 1
+            for i in result_user:
+                if user in i[0]:
+                    self.error.setText("User already exist!")
+                    flag = 0
+                    break
+            if flag == 1:
+                user_info = [user, password]
+                cur.execute(
+                    'INSERT INTO login_info (username, password) VALUES (?,?)', user_info)
+                
+                conn.commit()
+                conn.close()          
 
-            conn.commit()
-            conn.close()
-
-            dataenter = Information(self.app, self.widget)
-            self.widget.addWidget(dataenter)
-            self.widget.setCurrentIndex(self.widget.currentIndex()+1)
+                dataenter = Information(self.app, self.widget)
+                self.widget.addWidget(dataenter)
+                self.widget.setCurrentIndex(self.widget.currentIndex()+1)
 
 class LoginScreen(QDialog):
     def __init__(self, app, widget):
@@ -74,7 +89,7 @@ class LoginScreen(QDialog):
 
         else:
             try:
-                conn = sqlite3.connect("../Model/users.db")
+                conn = sqlite3.connect("../Database/users.db")
                 cur = conn.cursor()
                 query = 'SELECT * FROM login_info WHERE username =\''+user+"\'"
                 cur.execute(query)
@@ -88,13 +103,16 @@ class LoginScreen(QDialog):
                     if result_pass == password:
                         print("Successfully logged in.")
                         self.error.setText("")
-
-                        dataenter = Information(self.app, self.widget)
-                        self.widget.addWidget(dataenter)
+                        information = Information(self.app, self.widget)
+                        self.widget.addWidget(information)
                         self.widget.setCurrentIndex(self.widget.currentIndex()+1)
+                        ''' dataenter = dataenterScreen()
+                        self.widget.addWidget(dataenter)
+                        self.widget.setCurrentIndex(self.widget.currentIndex()+1)'''
                     
 
                     else:
                         self.error.setText("Invalid username or password")
             except Exception as e:
                 self.error.setText("Invalid username or password")
+                print("Login Exceotion:",e)

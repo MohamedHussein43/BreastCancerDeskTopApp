@@ -703,7 +703,7 @@ class Information(QDialog):
 
         else:
                 print("Enter all data")
-                self.showMessage();
+                self.showMessage()
 
     def showMessage(self):
         #create instance of the messageBox Class
